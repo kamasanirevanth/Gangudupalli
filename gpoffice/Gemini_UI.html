@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP Office | Gangudupalle</title>
+    <link href="./GP Office _ Gangudupalle_files/css2" rel="stylesheet">
+    <link href="./GP Office _ Gangudupalle_files/css2(1)" rel="stylesheet">
+    
+    <link href="./GP Office _ Gangudupalle_files/aos.css" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mallanna&display=swap');
+
+        body {
+            font-family: 'Mallanna', sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* Light, pastel gradient background for the liquid glass effect */
+            background: linear-gradient(135deg, #e0f2f7, #f7e0f2, #e0f7e0); /* Soft blues, pinks, and greens */
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden; /* Hide overflow for background animations */
+        }
+
+        /* Animated background for liquid effect */
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #333; /* Darker color for good contrast on light background */
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle light shadow for depth */
+            font-size: 2.5em;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            padding: 20px;
+            z-index: 1; /* Ensure cards are above background elements */
+        }
+
+        /* Liquid Glassmorphism Style for Cards (Light) */
+        .card {
+            background: rgba(255, 255, 255, 0.5); /* More visible white background for light glass */
+            backdrop-filter: blur(20px) saturate(150%); /* Adjusted blur and saturation for lighter look */
+            -webkit-backdrop-filter: blur(20px) saturate(150%); /* For Safari */
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.7); /* More prominent, bright border */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Lighter, subtle shadow */
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%); /* Stronger shimmer for light background */
+            transform: translateX(-100%) rotate(45deg);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%) rotate(45deg);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+            background: rgba(255, 255, 255, 0.65); /* More opaque on hover */
+        }
+
+        .card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid rgba(255, 255, 255, 0.8); /* Brighter, more solid border */
+            transition: transform 0.4s ease, border-color 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Lighter shadow around image */
+        }
+
+        .card:hover img {
+            transform: scale(1.15) rotate(5deg);
+            border-color: rgba(255, 255, 255, 0.9); /* Even brighter border on hover */
+        }
+
+        .card h2 {
+            font-size: 26px;
+            margin: 10px 0;
+            color: #444; /* Darker grey for headings */
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .card p {
+            font-size: 20px;
+            margin: 5px 0;
+            color: #6a6a6a; /* Softer grey for details */
+            font-weight: 500;
+        }
+
+        .card a {
+            color: #007bff; /* Standard blue for links, stands out on light */
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+
+        .card a:hover {
+            color: #0056b3; /* Darker blue on hover */
+        }
+
+        .card a::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background-color: #007bff;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .card a:hover::after {
+            width: 100%;
+        }
+
+        /* Screws - Made slightly darker to stand out on light glass */
+        .screw {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: rgba(0, 0, 0, 0.1); /* Very subtle dark for contrast */
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.3);
+            z-index: 2;
+        }
+
+        .screw:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.4);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        .screw:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.4);
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .screw.top-left { top: 15px; left: 15px; }
+        .screw.top-right { top: 15px; right: 15px; }
+        .screw.bottom-left { bottom: 15px; left: 15px; }
+        .screw.bottom-right { bottom: 15px; right: 15px; }
+
+        /* Progress Bar - Enhance with light glassmorphism */
+        .progress-container {
+            width: 90%;
+            max-width: 600px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.6); /* Lighter transparent background */
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #89f7fe, #66a6ff); /* Light blue gradient */
+            border-radius: 20px;
+            transition: width 0.7s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%); /* Stronger shimmer for light bar */
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            color: #333; /* Darker text for readability */
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Home Button Styling (Light Glass) */
+        .home-button {
+            background: rgba(255, 255, 255, 0.7); /* Lighter, more visible background */
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.9); /* Brighter border */
+            color: #333; /* Darker text */
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Mallanna', sans-serif;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .home-button:hover {
+            background: rgba(255, 255, 255, 0.85); /* More opaque on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .home-icon {
+            font-size: 20px;
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2)); /* Subtle dark shadow for icon */
+        }
+    </style>
+</head>
+
+<body data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+    <button class="home-button" onclick="window.location.href='../index.html';">
+        <span class="home-icon">🏠</span> Home
+    </button>
+
+    <h1>గ్రామ సచివాలయ అధికారుల వివరాలు</h1>
+    
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        <div class="progress-text" id="progressText">దయచేసి వేచి ఉండండి</div>
+    </div>
+
+    <div class="card-container">
+        </div>
+
+    <script>
+        async function fetchOfficerData() {
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            let width = 0;
+            const totalTime = 3000; // Total time for progress bar to complete (in ms)
+            const intervalTime = 50; // Update interval (in ms)
+            const increment = (100 / (totalTime / intervalTime));
+
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    progressText.textContent = "పూర్తయింది!"; // Text when loaded
+                    // Optional: Hide progress bar after completion or fade out
+                    setTimeout(() => {
+                        document.querySelector('.progress-container').style.display = 'none';
+                    }, 500);
+                } else {
+                    width += increment;
+                    progressBar.style.width = width + "%";
+                }
+            }, intervalTime);
+
+            try {
+                const response = await fetch('https://script.googleusercontent.com/macros/echo?user_content_key=j3PKf-33vXe_gaERfsEk9SsPu8sNtDS5zSMhIU3rGur_wwb31GMCet9pdy8Wm2SXOWtVxN1eA7T4yhK1xiPmBEr35XuhcbA7T4yhK1xiPmBEr35XuhcbAam5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNscr69Uh1D-E_TugKc8BA9s_HpxKCr0bMhzPMNdbJwdOTIXDjv2lRXiiL3So94kyyPcuYmlrHfU8gex96wWcqVsi1pFjr4ESNz9Jw9Md8uu&lib=MZAVfprUFcRs6bLZPSspN66GLciEtmt4z');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                const cardContainer = document.querySelector('.card-container');
+                cardContainer.innerHTML = ''; // Clear existing cards
+
+                data.forEach(officer => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.setAttribute('data-aos', 'fade-up');
+                    card.setAttribute('data-aos-delay', '100'); 
+
+                    card.innerHTML = `
+                        <img src="https://gangudupalli-in-website.web.app/photos/${officer.emp_img}.jpeg" alt="${officer.desig}">
+                        <h2>${officer.emp_name}</h2>
+                        <p class="nameplate">${officer.desig}</p>
+                        <div class="screw top-left"></div>
+                        <div class="screw top-right"></div>
+                        <div class="screw bottom-left"></div>
+                        <div class="screw bottom-right"></div>
+                        <p><a href="tel:${officer.phone_no}">${officer.phone_no}</a></p>
+                    `;
+                    cardContainer.appendChild(card);
+                });
+                width = 100;
+            } catch (error) {
+                console.error("Error fetching officer data:", error);
+                progressText.textContent = "లోడ్ చేయడంలో లోపం వచ్చింది.";
+                progressBar.style.backgroundColor = '#dc3545';
+                width = 100;
+            }
+        }
+
+        fetchOfficerData();
+        
+        AOS.init({
+            duration: 1200,
+            once: false,
+            easing: 'ease-out-cubic',
+        });
+    </script>
+
+    <script src="./GP Office _ Gangudupalle_files/aos.js.download"></script>
+</body>
+</html>

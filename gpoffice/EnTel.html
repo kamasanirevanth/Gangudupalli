@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP Office | Gangudupalle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mallanna&display=swap" rel="stylesheet">
+    
+    <link href="./GP Office _ Gangudupalle_files/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Mallanna', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: auto; /* Enable vertical scroll if content overflows */
+            transition: background 0.5s ease; /* Smooth transition for theme changes */
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .header-container {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            gap: 15px; /* Space between groups of header elements */
+        }
+
+        .header-left {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 5px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .search-container:focus-within {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .search-input {
+            border: none;
+            background: transparent;
+            padding: 8px 10px;
+            font-size: 16px;
+            color: #333;
+            width: 180px;
+            transition: width 0.3s ease;
+            outline: none;
+        }
+        .search-input::placeholder {
+            color: #666;
+            opacity: 0.8;
+        }
+        .search-input:focus {
+            width: 220px;
+        }
+
+        .search-icon {
+            color: #666;
+            font-size: 18px;
+            margin-right: 5px;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .lang-button {
+            padding: 8px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            color: #333;
+            font-family: 'Mallanna', sans-serif;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .lang-button:hover {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .lang-button.active {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 0 2px #007bff55, 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        /* Card Count Display */
+        .card-count {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #555;
+            transition: color 0.5s ease;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* Card Base Styles */
+        .card {
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.6s ease, border 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(128, 128, 128, 0.3), rgba(128, 128, 128, 0) 70%);
+            transform: translateX(-100%) rotate(45deg);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%) rotate(45deg);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+        }
+
+        .card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 26px;
+            margin: 10px 0;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .card p {
+            font-size: 20px;
+            margin: 5px 0;
+            font-weight: 500;
+            transition: color 0.5s ease;
+        }
+
+        .card a {
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .card a:hover::after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            opacity: 0.8;
+        }
+
+        /* Screws */
+        .screw {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            z-index: 2;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .screw:before, .screw:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 1px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            transition: background-color 0.5s ease;
+        }
+        .screw:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .screw.top-left { top: 15px; left: 15px; }
+        .screw.top-right { top: 15px; right: 15px; }
+        .screw.bottom-left { bottom: 15px; left: 15px; }
+        .screw.bottom-right { bottom: 15px; right: 15px; }
+
+        /* Job Chart Toggle Button */
+        .job-chart-toggle-btn, .calendar-button { /* Apply to both toggle buttons */
+            display: block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            color: #333; /* Default text color, will be themed */
+            transition: all 0.3s ease;
+            outline: none;
+            width: calc(100% - 30px); /* Adjust for padding */
+        }
+
+        /* Specific for calendar button in header */
+        .calendar-button { /* Renamed from calendar-toggle-btn */
+            width: auto; /* Auto width for text */
+            margin-top: 0; /* Remove top margin */
+            margin-bottom: 0; /* Remove bottom margin */
+            padding: 10px 20px; /* Adjust padding */
+            font-size: 18px; /* Adjust font size */
+            white-space: nowrap; /* Prevent text wrap */
+            display: flex; /* For icon and text alignment */
+            align-items: center;
+            gap: 8px; /* Space between icon and text */
+        }
+
+        .job-chart-toggle-btn:hover, .calendar-button:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Calendar icon specific styling */
+        .calendar-icon {
+            font-size: 1.2em; /* Adjust icon size */
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 90%;
+            max-width: 600px;
+            height: 40px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 30px;
+            transition: background 0.5s ease, border 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 20px;
+            transition: width 0.7s ease-out, background 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        /* Home Button */
+        .home-button {
+            backdrop-filter: blur(15px);
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Mallanna', sans-serif;
+            transition: all 0.3s ease;
+            outline: none;
+            text-wrap: nowrap;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .home-icon {
+            font-size: 20px;
+            transition: filter 0.5s ease;
+        }
+
+        /* --- Theme Styles --- */
+
+        /* Light Theme (Default) */
+        body.theme-light {
+            background: linear-gradient(135deg, #e0f2f7, #f7e0f2, #e0f7e0);
+        }
+        body.theme-light h1 {
+            color: #333;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .card:hover {
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.65);
+        }
+        body.theme-light .card img {
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .card:hover img {
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+        body.theme-light .card h2 {
+            color: #444;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .card p {
+            color: #6a6a6a;
+        }
+        body.theme-light .card a {
+            color: #007bff;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        body.theme-light .card a:hover {
+            color: #0056b3;
+        }
+        body.theme-light .card a::after {
+            background-color: #007bff;
+        }
+        body.theme-light .screw {
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.3);
+        }
+        body.theme-light .screw:before, body.theme-light .screw:after {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        body.theme-light .progress-container {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        body.theme-light .progress-bar {
+            background: linear-gradient(90deg, #89f7fe, #66a6ff);
+        }
+        body.theme-light .progress-text {
+            color: #333;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .home-button, body.theme-light .search-container, body.theme-light .language-selector, body.theme-light .calendar-button {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .home-button:hover, body.theme-light .search-container:focus-within, body.theme-light .calendar-button:hover {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        body.theme-light .home-icon {
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+        }
+        body.theme-light .search-input { color: #333; }
+        body.theme-light .search-input::placeholder, body.theme-light .search-icon { color: #666; }
+        body.theme-light .card-count { color: #555; }
+        body.theme-light .lang-button { color: #333; }
+        body.theme-light .lang-button:hover { background: rgba(255, 255, 255, 0.6); }
+        body.theme-light .lang-button.active { background: rgba(255, 255, 255, 0.8); }
+        body.theme-light .job-chart-toggle-btn { color: #333; background: rgba(0, 0, 0, 0.1); border-color: rgba(255,255,255,0.3); }
+        body.theme-light .job-chart-toggle-btn:hover { background: rgba(0, 0, 0, 0.2); }
+        body.theme-light .modal-content { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
+        body.theme-light .modal-content h3, body.theme-light .modal-content h4 { color: #333; }
+        body.theme-light .modal-content p, body.theme-light .modal-content li { color: #555; }
+        body.theme-light .modal-close-button { color: #333; }
+        body.theme-light .modal-close-button:hover { background-color: #f0f0f0; }
+        body.theme-light .calendar-day.holiday { background-color: #ffe0e0; } /* Light red */
+        body.theme-light .calendar-day.holiday:hover { background-color: #ffcccc; }
+        body.theme-light .holiday-date { color: #c00; } /* Darker red date */
+        body.theme-light .calendar-day.today { background-color: #e0ffe0; border-color: #00aa00; } /* Light green for today */
+        body.theme-light .calendar-day.today .day-number { color: #00aa00; } /* Green day number for today */
+        body.theme-light .calendar-day.today.holiday { background-color: #ffc2c2; border-color: #c00; } /* Red background for today if also a holiday */
+        body.theme-light .calendar-day.today.holiday .day-number { color: #c00; } /* Red day number for today if also a holiday */
+        body.theme-light .month-name, body.theme-light .weekdays, body.theme-light .calendar-day { color: #333; }
+        body.theme-light .calendar-nav button { color: #666; } /* Nav arrows color */
+        body.theme-light .calendar-nav button:hover { background-color: rgba(0,0,0,0.05); }
+        body.theme-light .disclaimer { color: #888; background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
+        body.theme-light .upcoming-events-section { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        body.theme-light .upcoming-events-section h2 { color: #333; }
+        body.theme-light .event-item { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.4); }
+        body.theme-light .event-item:hover { background: rgba(255,255,255,0.2); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-light .event-item h3 { color: #007bff; }
+        body.theme-light .event-item p { color: #444; }
+        body.theme-light .event-item span { color: #666; }
+
+
+        /* Dark Theme */
+        body.theme-dark {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        }
+        body.theme-dark h1 {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        body.theme-dark .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        body.theme-dark .card:hover {
+            box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        body.theme-dark .card img {
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .card:hover img {
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+        body.theme-dark .card h2 {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .card p {
+            color: rgba(255, 230, 0, 0.8);
+        }
+        body.theme-dark .card a {
+            color: #87ceeb;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .card a:hover {
+            color: #00ffff;
+        }
+        body.theme-dark .card a::after {
+            background-color: #00ffff;
+        }
+        body.theme-dark .screw {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2), inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+        }
+        body.theme-dark .screw:before, body.theme-dark .screw:after {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        body.theme-dark .progress-bar {
+            background: linear-gradient(90deg, #6dd5ed, #2193b0);
+        }
+        body.theme-dark .progress-text {
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        body.theme-dark .home-button, body.theme-dark .search-container, body.theme-dark .language-selector, body.theme-dark .calendar-button {
+            background: rgba(128, 128, 128, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .home-button:hover, body.theme-dark .search-container:focus-within, body.theme-dark .calendar-button:hover {
+            background: rgba(128, 128, 128, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .home-icon {
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        }
+        body.theme-dark .search-input { color: white; }
+        body.theme-dark .search-input::placeholder, body.theme-dark .search-icon { color: #ccc; }
+        body.theme-dark .card-count { color: #ccc; }
+        body.theme-dark .lang-button { color: white; }
+        body.theme-dark .lang-button:hover { background: rgba(255, 255, 255, 0.2); }
+        body.theme-dark .lang-button.active { background: rgba(255, 255, 255, 0.3); }
+        body.theme-dark .job-chart-toggle-btn { color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        body.theme-dark .job-chart-toggle-btn:hover { background: rgba(255,255,255,0.2); }
+        body.theme-dark .modal-content { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        body.theme-dark .modal-content h3, body.theme-dark .modal-content h4 { color: white; }
+        body.theme-dark .modal-content p, body.theme-dark .modal-content li { color: #eee; }
+        body.theme-dark .modal-close-button { color: white; }
+        body.theme-dark .modal-close-button:hover { background-color: rgba(255,255,255,0.1); }
+        body.theme-dark .calendar-day.holiday { background-color: #4a0000; } /* Dark red */
+        body.theme-dark .calendar-day.holiday:hover { background-color: #6a0000; }
+        body.theme-dark .holiday-date { color: #ff5555; } /* Brighter red date */
+        body.theme-dark .calendar-day.today { background-color: #002b5c; border-color: #007bff; }
+        body.theme-dark .calendar-day.today .day-number { color: #007bff; }
+        body.theme-dark .calendar-day.today.holiday { background-color: #8c0000; border-color: #ff5555; }
+        body.theme-dark .calendar-day.today.holiday .day-number { color: #ff5555; }
+        body.theme-dark .month-name, body.theme-dark .weekdays, body.theme-dark .calendar-day { color: white; }
+        body.theme-dark .calendar-nav button { color: #ccc; }
+        body.theme-dark .calendar-nav button:hover { background-color: rgba(255,255,255,0.05); }
+        body.theme-dark .disclaimer { color: #ccc; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        body.theme-dark .upcoming-events-section { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        body.theme-dark .upcoming-events-section h2 { color: white; }
+        body.theme-dark .event-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+        body.theme-dark .event-item:hover { background: rgba(255,255,255,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-dark .event-item h3 { color: #87ceeb; }
+        body.theme-dark .event-item p { color: #eee; }
+        body.theme-dark .event-item span { color: #bbb; }
+
+        /* Additional Themes (colors updated for consistency with new lang/search bars) */
+        body.theme-ocean {
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #003e8f); /* Deep blues */
+        }
+        body.theme-ocean h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-ocean .card { background: rgba(0, 198, 255, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-ocean .card:hover { background: rgba(0, 198, 255, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-ocean .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-ocean .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-ocean .card p { color: #aaffea; } /* Light teal */
+        body.theme-ocean .card a { color: #87ceeb; }
+        body.theme-ocean .card a:hover { color: #00ffff; }
+        body.theme-ocean .card a::after { background-color: #00ffff; }
+        body.theme-ocean .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-ocean .screw:before, body.theme-ocean .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-ocean .progress-bar { background: linear-gradient(90deg, #6dd5ed, #2193b0); }
+        body.theme-ocean .progress-text { color: white; }
+        body.theme-ocean .home-button, body.theme-ocean .search-container, body.theme-ocean .language-selector, body.theme-ocean .calendar-button { background: rgba(0,198,255,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-ocean .home-button:hover, body.theme-ocean .search-container:focus-within, body.theme-ocean .calendar-button:hover { background: rgba(0,198,255,0.45); }
+        body.theme-ocean .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+        body.theme-ocean .search-input { color: white; }
+        body.theme-ocean .search-input::placeholder, body.theme-ocean .search-icon { color: #ccf; }
+        body.theme-ocean .card-count { color: #ccf; }
+        body.theme-ocean .lang-button { color: white; }
+        body.theme-ocean .lang-button:hover { background: rgba(255, 255, 255, 0.2); }
+        body.theme-ocean .lang-button.active { background: rgba(255, 255, 255, 0.3); }
+        body.theme-ocean .job-chart-toggle-btn { color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        body.theme-ocean .job-chart-toggle-btn:hover { background: rgba(255,255,255,0.2); }
+        body.theme-ocean .modal-content { background: rgba(0, 198, 255, 0.2); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        body.theme-ocean .modal-content h3, body.theme-ocean .modal-content h4 { color: white; }
+        body.theme-ocean .modal-content p, body.theme-ocean .modal-content li { color: #e0ffff; }
+        body.theme-ocean .modal-close-button { color: white; }
+        body.theme-ocean .modal-close-button:hover { background-color: rgba(255,255,255,0.1); }
+        body.theme-ocean .calendar-day.holiday { background-color: #003366; } /* Darker blue */
+        body.theme-ocean .calendar-day.holiday:hover { background-color: #004488; }
+        body.theme-ocean .holiday-date { color: #aaffff; } /* Light blue date */
+        body.theme-ocean .calendar-day.today { background-color: #0056a0; border-color: #00aaff; }
+        body.theme-ocean .calendar-day.today .day-number { color: #00aaff; }
+        body.theme-ocean .calendar-day.today.holiday { background-color: #002244; border-color: #aaffff; }
+        body.theme-ocean .calendar-day.today.holiday .day-number { color: #aaffff; }
+        body.theme-ocean .month-name, body.theme-ocean .weekdays, body.theme-ocean .calendar-day { color: white; }
+        body.theme-ocean .calendar-nav button { color: #ccf; }
+        body.theme-ocean .calendar-nav button:hover { background-color: rgba(255,255,255,0.05); }
+        body.theme-ocean .disclaimer { color: #ccf; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        body.theme-ocean .upcoming-events-section { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        body.theme-ocean .upcoming-events-section h2 { color: white; }
+        body.theme-ocean .event-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+        body.theme-ocean .event-item:hover { background: rgba(255,255,255,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-ocean .event-item h3 { color: #87ceeb; }
+        body.theme-ocean .event-item p { color: #e0ffff; }
+        body.theme-ocean .event-item span { color: #bbffff; }
+
+        body.theme-forest {
+            background: linear-gradient(135deg, #1d976c, #3f8f6b, #93f9b9); /* Greens */
+        }
+        body.theme-forest h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-forest .card { background: rgba(29, 151, 108, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-forest .card:hover { background: rgba(29, 151, 108, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-forest .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-forest .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-forest .card p { color: #e0ffb3; } /* Light yellow-green */
+        body.theme-forest .card a { color: #98fb98; }
+        body.theme-forest .card a:hover { color: #66ff66; }
+        body.theme-forest .card a::after { background-color: #66ff66; }
+        body.theme-forest .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-forest .screw:before, body.theme-forest .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-forest .progress-bar { background: linear-gradient(90deg, #a8e063, #56ab2f); }
+        body.theme-forest .progress-text { color: white; }
+        body.theme-forest .home-button, body.theme-forest .search-container, body.theme-forest .language-selector, body.theme-forest .calendar-button { background: rgba(29,151,108,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-forest .home-button:hover, body.theme-forest .search-container:focus-within, body.theme-forest .calendar-button:hover { background: rgba(29,151,108,0.45); }
+        body.theme-forest .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+        body.theme-forest .search-input { color: white; }
+        body.theme-forest .search-input::placeholder, body.theme-forest .search-icon { color: #ccf; }
+        body.theme-forest .card-count { color: #ccf; }
+        body.theme-forest .lang-button { color: white; }
+        body.theme-forest .lang-button:hover { background: rgba(255, 255, 255, 0.2); }
+        body.theme-forest .lang-button.active { background: rgba(255, 255, 255, 0.3); }
+        body.theme-forest .job-chart-toggle-btn { color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        body.theme-forest .job-chart-toggle-btn:hover { background: rgba(255,255,255,0.2); }
+        body.theme-forest .modal-content { background: rgba(29, 151, 108, 0.2); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        body.theme-forest .modal-content h3, body.theme-forest .modal-content h4 { color: white; }
+        body.theme-forest .modal-content p, body.theme-forest .modal-content li { color: #e0ffb3; }
+        body.theme-forest .modal-close-button { color: white; }
+        body.theme-forest .modal-close-button:hover { background-color: rgba(255,255,255,0.1); }
+        body.theme-forest .calendar-day.holiday { background-color: #2a614d; } /* Darker green */
+        body.theme-forest .calendar-day.holiday:hover { background-color: #3a715d; }
+        body.theme-forest .holiday-date { color: #aaffaa; } /* Light green date */
+        body.theme-forest .calendar-day.today { background-color: #1a5c3a; border-color: #33bb66; }
+        body.theme-forest .calendar-day.today .day-number { color: #33bb66; }
+        body.theme-forest .calendar-day.today.holiday { background-color: #11382b; border-color: #aaffaa; }
+        body.theme-forest .calendar-day.today.holiday .day-number { color: #aaffaa; }
+        body.theme-forest .month-name, body.theme-forest .weekdays, body.theme-forest .calendar-day { color: white; }
+        body.theme-forest .calendar-nav button { color: #ccf; }
+        body.theme-forest .calendar-nav button:hover { background-color: rgba(255,255,255,0.05); }
+        body.theme-forest .disclaimer { color: #ccf; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        body.theme-forest .upcoming-events-section { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        body.theme-forest .upcoming-events-section h2 { color: white; }
+        body.theme-forest .event-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+        body.theme-forest .event-item:hover { background: rgba(255,255,255,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-forest .event-item h3 { color: #98fb98; }
+        body.theme-forest .event-item p { color: #e0ffb3; }
+        body.theme-forest .event-item span { color: #bbffbb; }
+
+        body.theme-sunset {
+            background: linear-gradient(135deg, #f09819, #ff5733, #e81d1d); /* Oranges, reds */
+        }
+        body.theme-sunset h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-sunset .card { background: rgba(240, 152, 25, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-sunset .card:hover { background: rgba(240, 152, 25, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-sunset .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-sunset .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-sunset .card p { color: #ffd699; } /* Light orange */
+        body.theme-sunset .card a { color: #ffbe82; }
+        body.theme-sunset .card a:hover { color: #ffab57; }
+        body.theme-sunset .card a::after { background-color: #ffab57; }
+        body.theme-sunset .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-sunset .screw:before, body.theme-sunset .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-sunset .progress-bar { background: linear-gradient(90deg, #ff9a9e, #fad0c4); }
+        body.theme-sunset .progress-text { color: white; }
+        body.theme-sunset .home-button, body.theme-sunset .search-container, body.theme-sunset .language-selector, body.theme-sunset .calendar-button { background: rgba(240,152,25,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-sunset .home-button:hover, body.theme-sunset .search-container:focus-within, body.theme-sunset .calendar-button:hover { background: rgba(240,152,25,0.45); }
+        body.theme-sunset .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+        body.theme-sunset .search-input { color: white; }
+        body.theme-sunset .search-input::placeholder, body.theme-sunset .search-icon { color: #fcc; }
+        body.theme-sunset .card-count { color: #fcc; }
+        body.theme-sunset .lang-button { color: white; }
+        body.theme-sunset .lang-button:hover { background: rgba(255, 255, 255, 0.2); }
+        body.theme-sunset .lang-button.active { background: rgba(255, 255, 255, 0.3); }
+        body.theme-sunset .job-chart-toggle-btn { color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+        body.theme-sunset .job-chart-toggle-btn:hover { background: rgba(255,255,255,0.2); }
+        body.theme-sunset .modal-content { background: rgba(240, 152, 25, 0.2); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
+        body.theme-sunset .modal-content h3, body.theme-sunset .modal-content h4 { color: white; }
+        body.theme-sunset .modal-content p, body.theme-sunset .modal-content li { color: #ffd699; }
+        body.theme-sunset .modal-close-button { color: white; }
+        body.theme-sunset .modal-close-button:hover { background-color: rgba(255,255,255,0.1); }
+        body.theme-sunset .calendar-day.holiday { background-color: #8c2a00; } /* Darker red-orange */
+        body.theme-sunset .calendar-day.holiday:hover { background-color: #a63a00; }
+        body.theme-sunset .holiday-date { color: #ffaa55; } /* Brighter orange date */
+        body.theme-sunset .calendar-day.today { background-color: #b05a00; border-color: #ff8833; }
+        body.theme-sunset .calendar-day.today .day-number { color: #ff8833; }
+        body.theme-sunset .calendar-day.today.holiday { background-color: #6a1a00; border-color: #ffaa55; }
+        body.theme-sunset .calendar-day.today.holiday .day-number { color: #ffaa55; }
+        body.theme-sunset .month-name, body.theme-sunset .weekdays, body.theme-sunset .calendar-day { color: white; }
+        body.theme-sunset .calendar-nav button { color: #fcc; }
+        body.theme-sunset .calendar-nav button:hover { background-color: rgba(255,255,255,0.05); }
+        body.theme-sunset .disclaimer { color: #fcc; background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        body.theme-sunset .upcoming-events-section { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        body.theme-sunset .upcoming-events-section h2 { color: white; }
+        body.theme-sunset .event-item { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+        body.theme-sunset .event-item:hover { background: rgba(255,255,255,0.1); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        body.theme-sunset .event-item h3 { color: #ffbe82; }
+        body.theme-sunset .event-item p { color: #ffd699; }
+        body.theme-sunset .event-item span { color: #ffccaa; }
+
+
+        /* Theme Selection Buttons */
+        .theme-selector {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        .theme-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-button.active {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px #007bff55, 0 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.15);
+        }
+
+        /* Specific theme button colors */
+        .theme-button.light { background-color: #e0f2f7; }
+        .theme-button.dark { background-color: #1a2a6c; }
+        .theme-button.ocean { background-color: #0072ff; }
+        .theme-button.forest { background-color: #1d976c; }
+        .theme-button.sunset { background-color: #f09819; }
+
+        /* --- Modal Styles (Generic for both job chart and calendar) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.9); /* Default light glass for modal */
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 30px;
+            width: 90%;
+            max-width: 380px; /* Adjusted max-width for the calendar to be more compact like image */
+            max-height: 80vh; /* Max height to allow scrolling */
+            overflow-y: auto; /* Enable scrolling for modal content */
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out; /* Simple entry animation */
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h3, .modal-content h4 {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+            color: #333; /* Default, themed later */
+        }
+        .modal-content ul {
+            list-style: disc inside;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+        .modal-content li {
+            margin-bottom: 5px;
+            font-size: 0.95em;
+            line-height: 1.4;
+            color: #555; /* Default, themed later */
+        }
+        .modal-content p {
+             margin-bottom: 10px;
+             line-height: 1.5;
+             color: #555; /* Default, themed later */
+        }
+        .modal-content ul ul { /* Nested lists */
+            list-style: circle inside;
+            padding-left: 20px;
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #333; /* Default, themed later */
+            padding: 5px 10px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .modal-close-button:hover {
+            background-color: #f0f0f0; /* Default, themed later */
+        }
+        
+        /* Calendar Specific Styles within Modal */
+        /* Changed from .calendar-grid to .calendar-grid-single-month directly for compactness */
+        .calendar-grid-single-month {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr); /* 7 columns for days */
+            gap: 0px; /* No gap between days */
+            text-align: center;
+            font-size: 0.95em;
+            width: 100%; /* Ensure it takes full width of modal-content */
+            margin: 0 auto; /* Center the grid */
+        }
+        .calendar-grid-single-month .weekdays {
+            font-weight: bold;
+            padding-bottom: 5px;
+            color: inherit; /* Inherit from modal theme */
+            display: contents; /* Allows children to be grid items directly */
+        }
+        .calendar-grid-single-month .weekday-short {
+            font-size: 0.85em;
+            opacity: 0.8;
+            padding: 5px 0;
+            text-align: center;
+        }
+        .calendar-grid-single-month .calendar-day {
+            position: relative; /* For tooltip positioning */
+            padding: 10px 0; /* More vertical padding for visual spacing */
+            border-radius: 0; /* No border radius for square look */
+            background: transparent; /* Transparent background by default */
+            transition: background-color 0.2s ease, color 0.2s ease;
+            cursor: pointer; /* Pointer on hover */
+            display: flex; /* For centering day number */
+            justify-content: center;
+            align-items: center;
+            height: 40px; /* Fixed height to make days uniform */
+            box-sizing: border-box; /* Include padding in height */
+        }
+        .calendar-grid-single-month .calendar-day:hover {
+            background-color: rgba(0,0,0,0.05); /* Subtle hover effect */
+        }
+        .calendar-grid-single-month .calendar-day.other-month {
+            opacity: 0.4;
+            cursor: default;
+        }
+        .calendar-grid-single-month .calendar-day.today {
+            font-weight: bold;
+            background-color: #28a745; /* Green background for today as per image */
+            color: white; /* White text for today */
+            border-radius: 5px; /* Slight roundness for today's box */
+            position: relative; /* For the red dot */
+        }
+        .calendar-grid-single-month .calendar-day.today .day-number {
+            color: white; /* Ensure day number is white */
+        }
+        .calendar-grid-single-month .calendar-day.today::after { /* Small red indicator */
+            content: '';
+            position: absolute;
+            top: 4px; /* Adjust position for the dot */
+            right: 4px; /* Adjust position for the dot */
+            width: 6px;
+            height: 6px;
+            background-color: red; /* Red dot for today */
+            border-radius: 50%;
+        }
+        .calendar-grid-single-month .calendar-day .day-number {
+            display: block;
+            font-weight: bold;
+            font-size: 1.1em; /* Larger day number */
+        }
+        
+        .calendar-grid-single-month .calendar-day.holiday {
+            font-weight: bold;
+            background-color: #ffcccc; /* Light red background for holidays */
+            color: #c00; /* Darker red text for holidays */
+        }
+        .calendar-grid-single-month .calendar-day.holiday:hover {
+            background-color: #ffb3b3; /* Slightly darker red on hover */
+        }
+        .calendar-grid-single-month .calendar-day.holiday .day-number {
+             color: #c00; /* Darker red for date number */
+        }
+        /* When today is also a holiday */
+        .calendar-grid-single-month .calendar-day.today.holiday {
+            background-color: #ff9999; /* Blend of green and red, or a distinct color */
+            color: white; /* White text for contrast */
+            border: 1px solid red; /* Stronger border for visibility */
+        }
+        .calendar-grid-single-month .calendar-day.today.holiday .day-number {
+            color: white; /* Ensure day number is white */
+        }
+
+
+        /* Tooltip for holiday info on hover (text only, no separate span) */
+        .calendar-grid-single-month .calendar-day[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            top: -30px; /* Position above the day number */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 0.7em;
+            white-space: nowrap;
+            z-index: 3; /* Ensure it's above other elements */
+        }
+        .calendar-grid-single-month .calendar-day[title]:hover::before { /* Arrow for tooltip */
+            content: "";
+            position: absolute;
+            top: -8px; /* Position of arrow */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+            z-index: 3;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            font-size: 0.85em;
+            color: #888; /* Default, themed later */
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        .disclaimer.calendar-go {
+            margin-top: 20px;
+            margin-bottom: 0;
+        }
+
+        /* --- Upcoming Events Section --- */
+        .upcoming-events-section {
+            width: 100%;
+            max-width: 900px; /* Match card container max-width */
+            margin-top: 50px;
+            margin-bottom: 50px; /* Space before potential footer */
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15); /* Light glass */
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+        }
+        .upcoming-events-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333; /* Default, themed */
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .event-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            text-align: left;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .event-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .event-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            color: #007bff; /* Default, themed */
+        }
+        .event-item p {
+            font-size: 1em;
+            line-height: 1.5;
+            color: #444; /* Default, themed */
+        }
+        .event-item span {
+            font-size: 0.9em;
+            color: #666; /* Default, themed */
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .header-left, .header-right {
+                flex-direction: column;
+                align-items: center;
+                width: 100%; /* Take full width for stacking */
+            }
+            .search-container {
+                width: 100%;
+                max-width: 300px;
+            }
+            .search-input {
+                width: 100%;
+            }
+            .search-input:focus {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            .card-count {
+                font-size: 1em;
+            }
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+                padding: 10px;
+            }
+            .card {
+                width: 90%;
+                max-width: 320px;
+                padding: 20px;
+            }
+            .card img {
+                width: 100px;
+                height: 100px;
+            }
+            .card h2 {
+                font-size: 22px;
+            }
+            .card p {
+                font-size: 18px;
+            }
+            .home-button {
+                padding: 10px 20px;
+                font-size: 16px;
+                width: fit-content;
+            }
+            .progress-container {
+                width: 95%;
+            }
+            .theme-selector, .language-selector {
+                gap: 8px;
+                padding: 8px;
+            }
+            .theme-button, .lang-button {
+                height: auto; /* Allow height to adjust */
+                font-size: 14px;
+            }
+            .lang-button {
+                padding: 6px 10px; /* Smaller padding for lang buttons */
+            }
+            .theme-button {
+                width: 35px;
+                height: 35px;
+            }
+            .modal-content {
+                padding: 20px;
+                max-width: 95%;
+                font-size: 0.9em;
+            }
+            .modal-close-button {
+                top: 10px;
+                right: 15px;
+                font-size: 1.8em;
+            }
+            .holiday-list {
+                grid-template-columns: 1fr; /* Stack holidays on small screens */
+            }
+            .calendar-grid-single-month {
+                /* No change needed for this specific grid on mobile as it's already 7 columns */
+            }
+            .upcoming-events-section {
+                padding: 20px;
+                margin-top: 30px;
+            }
+            .upcoming-events-section h2 {
+                font-size: 1.8em;
+            }
+            .event-item {
+                padding: 10px 15px;
+            }
+            .event-item h3 {
+                font-size: 1.3em;
+            }
+            .event-item p {
+                font-size: 0.9em;
+            }
+            .calendar-day {
+                height: 35px; /* Adjust height for smaller screens */
+                padding: 5px 0;
+            }
+            .calendar-day .day-number {
+                font-size: 1em;
+            }
+            .calendar-nav .current-month-year {
+                font-size: 1.2em;
+            }
+            .calendar-nav button {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            .header-container {
+                padding: 0 10px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            .card {
+                width: 95%;
+                padding: 15px;
+            }
+            .card img {
+                width: 80px;
+                height: 80px;
+            }
+            .card h2 {
+                font-size: 20px;
+            }
+            .card p {
+                font-size: 16px;
+            }
+            .home-button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .theme-selector, .language-selector {
+                padding: 5px;
+            }
+            .theme-button {
+                width: 30px;
+                height: 30px;
+            }
+            .lang-button {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+            .modal-content {
+                padding: 15px;
+                font-size: 0.85em;
+            }
+            .modal-content h3, .modal-content h4 {
+                font-size: 1.4em;
+            }
+            .weekday-short {
+                font-size: 0.7em;
+            }
+            .calendar-day {
+                padding: 5px 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="theme-light" data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+    <div class="header-container">
+        <div class="header-left">
+            <button class="home-button" onclick="window.location.href='../index.html';">
+                <span class="home-icon">🏠</span> <span id="homeButtonText">Home</span>
+            </button>
+
+            <div class="language-selector">
+                <button class="lang-button active" data-lang="telugu">తెలుగు</button>
+                <button class="lang-button" data-lang="english">English</button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="officerSearch" class="search-input" placeholder="Search by name or designation...">
+            </div>
+            <button id="calendarButton" class="calendar-button">
+                <span class="calendar-icon">📅</span> 
+                <span id="calendarButtonText">Calendar</span>
+            </button>
+        </div>
+    </div>
+
+    <h1 id="mainTitle">గ్రామ సచివాలయ అధికారుల వివరాలు</h1>
+    
+    <div class="theme-selector">
+        <button class="theme-button light active" data-theme="light" title="Light Theme"></button>
+        <button class="theme-button dark" data-theme="dark" title="Dark Theme"></button>
+        <button class="theme-button ocean" data-theme="ocean" title="Ocean Theme"></button>
+        <button class="theme-button forest" data-theme="forest" title="Forest Theme"></button>
+        <button class="theme-button sunset" data-theme="sunset" title="Sunset Theme"></button>
+    </div>
+
+    <div class="card-count" id="cardCount"></div>
+
+    <div class="progress-container" id="progressBarContainer">
+        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        <div class="progress-text" id="progressText">దయచేసి వేచి ఉండండి</div>
+    </div>
+
+    <div class="card-container">
+        </div>
+
+    <div class="upcoming-events-section" data-aos="fade-up" data-aos-delay="200">
+        <h2 id="upcomingEventsTitle">రాబోయే ఈవెంట్‌లు</h2>
+        <div class="event-item">
+            <h3 id="gramaSabhaEventTitle">గ్రామ సభ సమావేశం</h3>
+            <p id="gramaSabhaEventDescription">గ్రామ అభివృద్ధి మరియు సంక్షేమ పథకాల గురించి చర్చించడానికి మరియు నిర్ణయాలు తీసుకోవడానికి ఈ గ్రామ సభ నిర్వహించబడుతుంది. ప్రజల భాగస్వామ్యం గ్రామ అభివృద్ధికి కీలకమైనది.</p>
+            <span id="gramaSabhaEventDate">తేదీ: 2025 ఆగస్టు 15 (శుక్రవారం), సమయం: ఉదయం 10:00 గంటలకు</span>
+            <p class="disclaimer"><i>దయచేసి సంబంధిత పంచాయతీ లేదా గ్రామ సచివాలయాన్ని సంప్రదించి ఈవెంట్ వివరాలను ధృవీకరించండి.</i></p>
+        </div>
+    </div>
+
+    <div id="jobChartModalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <button id="jobChartModalCloseButton" class="modal-close-button">&times;</button>
+            <h3 id="modalJobChartTitle"></h3>
+            <div id="modalJobChartContent">
+                </div>
+        </div>
+    </div>
+
+    <div id="calendarModalOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <button id="calendarModalCloseButton" class="modal-close-button">&times;</button>
+            <div class="calendar-nav">
+                <button id="prevMonthBtn">&lt;</button>
+                <div id="currentMonthYear" class="current-month-year"></div>
+                <button id="nextMonthBtn">&gt;</button>
+            </div>
+            <div id="calendarGridSingleMonth">
+                </div>
+            <p class="disclaimer calendar-go" id="calendarDisclaimer">
+                ఈ సెలవు దినాలు GO Rt. No.2116, General Administration (Poll.B) Department, dated: 06-12-2024 ఆధారంగా రూపొందించబడ్డాయి. దయచేసి సంబంధిత శాఖతో ధృవీకరించండి.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Single API URL now that it contains both languages
+        const API_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=j3PKf-33vXe_gaERfsEk9SsPu8sNtDS5zSMhIU3rGur_wwb31GMCet9pdy8Wm2SXOWtVxN1eA7T4yhK1xiPmBEr35XuhcbAam5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNscr69Uh1D-E_TugKc8BA9s_HpxKCr0bMhzPMNdbJwdOTIXDjv2lRXiiL3So94kyyPcuYmlrHfU8gex96wWcqVsi1pFjr4ESNz9Jw9Md8uu&lib=MZAVfprUFcRs6bLZPSspN66GLciEtmt4z';
+        
+        // Define static text for different languages
+        const LANGUAGE_TEXT = {
+            'telugu': {
+                mainTitle: 'గ్రామ సచివాలయ అధికారుల వివరాలు',
+                progressBarLoading: 'దయచేసి వేచి ఉండండి',
+                progressBarComplete: 'పూర్తయింది!',
+                progressBarError: 'లోడ్ చేయడంలో లోపం వచ్చింది.',
+                searchPlaceholder: 'పేరు లేదా హోదా ద్వారా శోధించండి...',
+                noOfficersFound: 'మీ శోధనకు సరిపోయే అధికారులు కనుగొనబడలేదు.',
+                officersFound: 'అధికారులు కనుగొనబడ్డారు:',
+                homeButton: 'ప్రధాన పేజీ',
+                jobChartToggleButton: 'పని వివరాలు చూడండి',
+                jobChartTitlePrefix: 'పని వివరాలు: ',
+                calendarButton: 'క్యాలెండర్',
+                calendarTitle: 'క్యాలెండర్', // Title will be dynamic (Month Year)
+                prevMonth: '&lt;',
+                nextMonth: '&gt;',
+                weekdaysShort: ['ఆది', 'సోమ', 'మంగ', 'బుధ', 'గురు', 'శుక్ర', 'శని'],
+                modalClose: '&times; (మూసివేయండి)',
+                upcomingEventsTitle: 'రాబోయే ఈవెంట్‌లు',
+                gramaSabhaEventTitle: 'గ్రామ సభ సమావేశం',
+                gramaSabhaEventDescription: 'గ్రామ అభివృద్ధి మరియు సంక్షేమ పథకాల గురించి చర్చించడానికి మరియు నిర్ణయాలు తీసుకోవడానికి ఈ గ్రామ సభ నిర్వహించబడుతుంది. ప్రజల భాగస్వామ్యం గ్రామ అభివృద్ధికి కీలకమైనది.',
+                gramaSabhaEventDate: 'తేదీ: 2025 ఆగస్టు 15 (శుక్రవారం), సమయం: ఉదయం 10:00 గంటలకు', 
+                disclaimerPrefix: 'ఈ సమాచారం GO.No. ఆధారంగా ఉంది. దయచేసి సంబంధిత విభాగాన్ని సంప్రదించి ధృవీకరించండి.',
+                disclaimerCalendarGO: 'ఈ సెలవు దినాలు GO Rt. No.2116, General Administration (Poll.B) Department, dated: 06-12-2024 ఆధారంగా రూపొందించబడ్డాయి. దయచేసి సంబంధిత శాఖతో ధృవీకరించండి.'
+            },
+            'english': {
+                mainTitle: 'Village Secretariat Officers Details',
+                progressBarLoading: 'Please wait',
+                progressBarComplete: 'Complete!',
+                progressBarError: 'Error loading data.',
+                searchPlaceholder: 'Search by name or designation...',
+                noOfficersFound: 'No officers found matching your search.',
+                officersFound: 'Officers Found:',
+                homeButton: 'Home',
+                jobChartToggleButton: 'View Job Chart',
+                jobChartTitlePrefix: 'Job Chart: ',
+                calendarButton: 'Calendar',
+                calendarTitle: 'Calendar', // Title will be dynamic (Month Year)
+                prevMonth: '&lt;',
+                nextMonth: '&gt;',
+                weekdaysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                modalClose: '&times; (Close)',
+                upcomingEventsTitle: 'Upcoming Events',
+                gramaSabhaEventTitle: 'Grama Sabha Meeting',
+                gramaSabhaEventDescription: 'This Grama Sabha is being held to discuss and make decisions regarding village development and welfare schemes. Public participation is crucial for village development.',
+                gramaSabhaEventDate: 'Date: August 15, 2025 (Thursday), Time: 10:00 AM', 
+                disclaimerPrefix: 'This information is based on GO.No. It may be incorrect, please double check with respective department.',
+                disclaimerCalendarGO: 'These holidays are based on GO Rt. No.2116, General Administration (Poll.B) Department, dated: 06-12-2024. Please verify with the concerned department.'
+            }
+        };
+
+        const CACHE_KEY = 'officerDataSingleApiCache'; // Single cache key for the combined data
+        const CACHE_EXPIRY_MS = 15 * 60 * 1000; // 15 minutes cache expiry
+
+        let allOfficersData = []; // Stores ALL fetched data from the single API call
+        let currentLanguage = localStorage.getItem('selectedLanguage') || 'telugu'; // Get saved language or default to telugu
+
+        // --- Job Chart Content (extracted from PDF) ---
+        const JOB_CHART_CONTENT = {
+            'general': { // Applies to all village functionaries
+                'telugu': `
+                    <p>గ్రామ సచివాలయం పనితీరు:</p>
+                    <ul>
+                        <li>సేవలను ప్రజల ఇంటి వద్దకే అందించడానికి ఒక సమర్థవంతమైన యంత్రాంగం.</li>
+                        <li>నవరత్నాలను అమలు చేయడానికి ఒక బలమైన & పని చేయగల ఛానెల్.</li>
+                        <li>ప్రభుత్వ సేవలను పౌరులకు అందించడంలో పారదర్శకత మరియు జవాబుదారీతనం కోసం ఒక యంత్రాంగం.</li>
+                        <li>గ్రామ స్థాయిలో సేవలను అందించడానికి విభాగాల మధ్య సమన్వయ యూనిట్.</li>
+                        <li>ప్రధాన విధి పౌరుల ఇంటి వద్ద వివిధ ప్రభుత్వ / ఇతర సేవలను అందించడం మరియు నవరత్నాలను పారదర్శకంగా మరియు అవినీతి రహితంగా సమర్థవంతంగా అందించడం.</li>
+                        <li>గ్రామ పంచాయతీకి దాని విధులను నిర్వహించడంలో సహాయం చేయండి.</li>
+                        <li>గ్రామ పంచాయతీ సమావేశాలు మరియు గ్రామ సభలలో పాల్గొనండి.</li>
+                        <li>గ్రామ పంచాయతీ అభివృద్ధి ప్రణాళికల తయారీలో సహాయం చేయండి.</li>
+                        <li>పని చేసిన దినచర్యను నిర్వహించండి.</li>
+                        <li>స్వీకరించిన ఫిర్యాదులపై చర్యలు తీసుకోండి.</li>
+                        <li>పోస్ట్ చేయబడిన గ్రామ సచివాలయం అధికార పరిధిలో నివసించండి.</li>
+                    </ul>
+                    <p><i>ఇతర సాధారణ విధులు కూడా ఉన్నాయి.</i></p>
+                `,
+                'english': `
+                    <p>Village Secretariat Functions:</p>
+                    <ul>
+                        <li>An effective mechanism to deliver services at door step.</li>
+                        <li>A strong & workable channel for implementation of NAVARATHNALU.</li>
+                        <li>A mechanism for Transparency and accountability in delivery of government services to the citizens.</li>
+                        <li>A unit of convergence among departments for providing services at village level.</li>
+                        <li>The prime duty is to provide various Government / other services at the door steps of Citizens and ensure effective delivery of Navarathnalu in transparent and corruption free manner.</li>
+                        <li>Aid & assist Gram Panchayat in performing its functions.</li>
+                        <li>Participate in Gram Panchayat meetings and Gram Sabhas.</li>
+                        <li>Assist in preparation of Gram Panchayat Development plans.</li>
+                        <li>Maintain a diary of work done every day.</li>
+                        <li>Follow up action on grievances received.</li>
+                        <li>Reside in the jurisdiction of the village secretariat where posted.</li>
+                    </ul>
+                    <p><i>Other general duties also apply.</i></p>
+                `
+            },
+            'Panchayat Secretary (Grade V)': { // Specific to Panchayat Secretary
+                'telugu': `
+                    <h3>ప్రత్యేక పని వివరాలు:</h3>
+                    <h4>పరిపాలనా విధులు:</h4>
+                    <ul>
+                        <li>చట్టం, అనుబంధ చట్టాలు మరియు నిబంధనల ద్వారా తనకు అప్పగించిన విధులను, ప్రభుత్వం సమయానుగుణంగా అప్పగించిన ప్రత్యేక విధులను నిర్వర్తించడం.</li>
+                        <li>గ్రామ పంచాయతీ యొక్క కార్యనిర్వాహక అధికారి మరియు గ్రామ సచివాలయానికి కన్వీనర్/కార్యదర్శి.</li>
+                        <li>గ్రామ పంచాయతీ పన్నులు మరియు ఇతర ఆదాయాలను సకాలంలో వసూలు చేసి క్రమం తప్పకుండా ట్రెజరీలో జమ చేయాలి.</li>
+                        <li>చెక్ బుక్‌లతో సహా గ్రామ పంచాయతీ యొక్క అన్ని రికార్డులు/రిజిస్టర్‌ల కస్టోడియన్‌గా వ్యవహరించాలి.</li>
+                        <li>సర్పంచ్ నియంత్రణలో పని చేయాలి.</li>
+                        <li>గ్రామ పంచాయతీ / గ్రామ సచివాలయ సమావేశాలు, స్టాండింగ్ కమిటీ సమావేశాలు మరియు గ్రామ సభలను నిర్వహించాలి.</li>
+                        <li>గ్రామ పంచాయతీ / గ్రామ సచివాలయం మరియు కమిటీల తీర్మానాలను అమలు చేయాలి.</li>
+                        <li>గ్రామ సచివాలయం కింద పనిచేసే అధికారులు మరియు ఉద్యోగులను సమన్వయం చేయండి మరియు పర్యవేక్షించండి.</li>
+                        <li>ప్రభుత్వ ఆస్తులను రక్షించండి మరియు ప్రభుత్వ ప్రయోజనాలను పరిరక్షించడానికి సమర్థవంతమైన చర్యలు తీసుకోండి.</li>
+                        <li>అన్ని గ్రామ పంచాయతీలు / గ్రామ సచివాలయ ఆస్తులకు సాధారణ కస్టోడియన్.</li>
+                        <li>అక్రమాలు, నష్టం లేదా పంచాయతీ భూములు మరియు భవనాల దుర్వినియోగంపై చర్య తీసుకోవాలి.</li>
+                        <li>వరదలు, తుఫాను, ప్రమాదాలు మొదలైన వాటిలో అధికారులకు సహాయం చేయాలి.</li>
+                        <li>అంటువ్యాధుల వ్యాప్తిని నివేదించండి మరియు నివారణ చర్యలు తీసుకోండి.</li>
+                        <li>గ్రామంలో పూర్తి పారిశుధ్యానికి బాధ్యత వహించండి.</li>
+                        <li>సమగ్ర శిశు అభివృద్ధి పథకం అమలులో సహాయం చేయండి.</li>
+                        <li>ముఖ్యంగా జనన, మరణాల రిజిస్ట్రార్‌గా వ్యవహరించండి మరియు జనన, మరణ ధృవీకరణ పత్రాలను జారీ చేయండి.</li>
+                        <li>వివాహ అధికారిగా వ్యవహరించండి మరియు వివాహ ధృవీకరణ పత్రాలను జారీ చేయండి.</li>
+                        <li>గ్రామ వాలంటీర్ల ద్వారా గుర్తించి, ఫంక్షనల్ అసిస్టెంట్ల ద్వారా ధృవీకరించబడిన అవసరాలను గ్రామ సభ ముందు ఉంచండి.</li>
+                        <li>ఎన్నికల విధులు నిర్వర్తించండి.</li>
+                        <li>షెడ్యూల్డ్ కులాలు మరియు షెడ్యూల్డ్ తెగలపై జరిగే అకృత్యాల కేసులను నివేదించండి.</li>
+                        <li>దేవాలయాలలోకి షెడ్యూల్డ్ కులాలకు మరియు షెడ్యూల్డ్ తెగలకు ప్రవేశం కల్పించడం ద్వారా అంటరానితనం నిర్మూలనకు కృషి చేయండి.</li>
+                        <li>మహిళలు మరియు పిల్లలపై జరిగే అకృత్యాలను అధికారులకు నివేదించండి.</li>
+                        <li>విత్తనాలు, ఎరువులు మరియు పురుగుమందుల బ్లాక్-మార్కెట్ అమ్మకాల గురించి అధికారులకు సమాచారం అందించండి.</li>
+                        <li>గ్రామ పంచాయతీ మరియు గ్రామ సచివాలయ ఫంక్షనల్ అసిస్టెంట్‌ల మధ్య సరైన సమన్వయాన్ని నిర్ధారించండి.</li>
+                        <li>రికార్డుల సరైన నిర్వహణను నిర్ధారించడానికి ఫైళ్లు మరియు రిజిస్టర్‌ల యాదృచ్ఛిక తనిఖీలను నిర్వహించండి.</li>
+                        <li>సలహాదారు, అమలు అధికారి, ఆర్థిక మేనేజర్, పన్ను అంచనా అధికారి, లైసెన్సింగ్ అధికారి, అనుమతి అధికారి, జనన & మరణాల రిజిస్ట్రార్, వివాహ అధికారి, ఎస్టేట్ అధికారి, డ్రాయింగ్ & డిస్బర్సింగ్ అధికారి, సహాయ ప్రజా సమాచార అధికారి మొదలైన వివిధ విధులను శ్రద్ధగా నిర్వర్తించండి.</li>
+                    </ul>
+                    <h4>ఆర్థిక విధులు:</h4>
+                    <ul>
+                        <li>డ్రాయింగ్ మరియు డిస్బర్సింగ్ అధికారిగా వ్యవహరించండి (DDO), మరియు గ్రామ సచివాలయ సిబ్బంది యొక్క జీతాలు మరియు భత్యాలను చెల్లించండి. గ్రామ వాలంటీర్ల గౌరవ వేతనం కూడా పంచాయతీ సెక్రటరీ చెల్లిస్తారు.</li>
+                        <li>గ్రామ పంచాయతీచే అధీకృత అన్ని రకాల ఖర్చుల కోసం పే ఆర్డర్ లేదా డిజిటల్ లావాదేవీల ద్వారా చెల్లింపులు చేయాలి.</li>
+                        <li>వార్షిక ఖాతాలు, బడ్జెట్ అంచనాలు మరియు మునుపటి ఆర్థిక సంవత్సరపు DCB స్టేట్‌మెంట్‌ను తయారు చేయండి మరియు గ్రామ పంచాయతీ ముందు ఆమోదం కోసం ఉంచండి మరియు తదుపరి సంవత్సరం మే 15 నాటికి AP స్టేట్ ఆడిట్ డిపార్ట్‌మెంట్ అధికారులకు సమర్పించండి.</li>
+                        <li>ప్రభుత్వం లేదా ఏదైనా ఆడిట్ అధికారం కోరినప్పుడు రిటర్న్‌లు, ఖాతాల స్టేట్‌మెంట్‌లు, అడ్మినిస్ట్రేటివ్ రిపోర్ట్ మరియు ఇతర వివరాలను సమర్పించండి.</li>
+                        <li>గ్రామ పంచాయతీ నియంత్రణలో ఉన్న లైన్ విభాగాల ఖాతాలను తనిఖీ చేయండి లేదా తనిఖీ చేయించండి.</li>
+                        <li>GPDP ప్రకారం ప్రణాళిక/కార్యక్రమం/పథకం నిధులను ఉపయోగించడంలో ఫంక్షనల్ అసిస్టెంట్‌లతో సమన్వయం చేయండి.</li>
+                    </ul>
+                    <h4>సంక్షేమం మరియు అభివృద్ధి కింద విధులు:</h4>
+                    <ul>
+                        <li>సంక్షేమ సహాయకుడి ద్వారా అన్ని రకాల సామాజిక భద్రతా పెన్షన్‌ల చెల్లింపును నిర్ధారించండి.</li>
+                        <li>గ్రామ సచివాలయ ఫంక్షనరీల సహాయంతో అభివృద్ధి కార్యకలాపాల అమలు గురించి వివరాలను అందించండి.</li>
+                        <li>గ్రామ వాలంటీర్ల ద్వారా సేకరించిన డేటా నుండి గుర్తించిన అవసరాల ఏకీకృత జాబితాను డిజిటల్ అసిస్టెంట్ సహాయంతో తయారు చేయండి.</li>
+                        <li>గ్రామ పంచాయతీ అభివృద్ధి ప్రణాళికలను గ్రామం యొక్క సంపూర్ణ, స్థిరమైన అభివృద్ధి కోసం సిద్ధం చేయండి.</li>
+                        <li>మహిళా పోలీసులు, మహిళా & శిశు అభివృద్ధి సహాయకుడితో కలిసి మహిళలను కొత్త స్వయం సహాయక బృందాలను ఏర్పాటు చేయడానికి ప్రోత్సహించండి.</li>
+                        <li>మండల ప్రజా పరిషత్ అధ్యక్షుడు, మండల పరిషత్ అభివృద్ధి అధికారి మరియు జిల్లా అధికారి నిర్వహించే నెలవారీ సిబ్బంది సమావేశాలకు హాజరుకావాలి.</li>
+                        <li>V.T.D.A. కు సహాయం చేయండి మరియు వారి సమావేశాలకు హాజరుకావాలి.</li>
+                        <li>వ్యవసాయ అభివృద్ధి మరియు దాని కార్యక్రమాలను అమలు చేయడంలో వ్యవసాయ / ఉద్యానవన / సెరికల్చర్ అసిస్టెంట్‌తో సమన్వయం చేయండి.</li>
+                        <li>ఇంజినీరింగ్ అసిస్టెంట్ సహాయంతో జలయజ్ఞం మరియు ఉపాధి హామీ పథకాన్ని అమలు చేయడంలో సహాయం చేయండి.</li>
+                        <li>ప్రతి ప్రదేశంలో నాటిన మొక్కల వివరాలను సేకరించడానికి నిర్వహించండి.</li>
+                        <li>విద్యా & సంక్షేమ సహాయకుడితో కలిసి వయోజనుల కార్యాచరణ అక్షరాస్యతను మెరుగుపరచడానికి చర్యలు తీసుకోండి.</li>
+                        <li>గ్రామ పంచాయతీ సమాచార బోర్డు మరియు గ్రామాల్లో ఆస్తులకు సంబంధించిన సమాచార బోర్డుల నిర్వహణ మరియు నవీకరణలో సహాయం చేయండి.</li>
+                        <li>సహజ వనరుల నిర్వహణ, ఉమ్మడి అటవీ నిర్వహణ / కమ్యూనిటీ అటవీ అభివృద్ధిలో ప్రజల భాగస్వామ్యాన్ని సమీకరించండి.</li>
+                        <li>సంఘటనల గురించి ప్రజలకు తెలియజేయడానికి డప్పు కొట్టడం మరియు ఇతర పద్ధతులను ఉపయోగించండి.</li>
+                        <li>సమయానుగుణంగా సమర్థ అధికారులు అప్పగించిన ఇతర విధులను నిర్వర్తించండి.</li>
+                    </ul>
+                `,
+                'english': `
+                    <h3>Specific Job Chart:</h3>
+                    <h4>Administrative Functions:</h4>
+                    <ul>
+                        <li>Responsible for discharging functions vested by the Act, allied Acts, and Rules, in addition to functions specially assigned by the Government.</li>
+                        <li>Executive Authority and also Convener/Secretary to Village Secretariat of the Grama Panchayat.</li>
+                        <li>Collect taxes and non-taxes of the Grama Panchayat promptly and deposit them in the treasury regularly.</li>
+                        <li>Maintain and act as the custodian of the entire records/registers of the Grama Panchayat, including cheque books.</li>
+                        <li>Subordinate to the Grama Panchayat and function under the control of the Sarpanch.</li>
+                        <li>Convene and ensure arrangements for periodical conduct of all statutory meetings such as Grama Panchayat/ Village Secretariat meetings, Standing Committee meetings, and Grama Sabhas.</li>
+                        <li>Attend the meeting of the Grama Panchayat/ Village Secretariat and Functional committees.</li>
+                        <li>Implement the resolutions of the Grama Panchayat/ Village Secretariat and of the committees.</li>
+                        <li>Coordinate & supervise the officers and employees working under the Village Secretariat.</li>
+                        <li>Have power to initiate disciplinary action against the employees of the Village Secretariat.</li>
+                        <li>Protect Government properties and safeguard the interest of Government.</li>
+                        <li>General custodian of all assets of the Grama Panchayats/ Village Secretariats.</li>
+                        <li>Take action against encroachments, damage or misuse of Panchayat lands and buildings.</li>
+                        <li>Assist authorities during floods, cyclone, accidents etc., and take up preventive, relief and rehabilitation work.</li>
+                        <li>Take mitigation and preventive measures and report any outbreak of communicable diseases.</li>
+                        <li>Responsible for the total sanitation in the village.</li>
+                        <li>Assist integrated child development scheme functionaries.</li>
+                        <li>Act as Registrar of births and deaths and issue certificates.</li>
+                        <li>Act as Marriage Officer and issue Marriage Certificates.</li>
+                        <li>Place needs/beneficiaries/problems identified by Village Volunteers before Grama Sabha.</li>
+                        <li>Perform election duties.</li>
+                        <li>Report cases of atrocities against Scheduled Caste and Scheduled Tribes.</li>
+                        <li>Strive for eradication of untouchability.</li>
+                        <li>Report on atrocities against women and children.</li>
+                        <li>Assist and provide information about black-market sales of seeds, fertilizers and pesticides.</li>
+                        <li>Ensure proper coordination between Grama Panchayat and Village Secretariat Functional Assistants.</li>
+                        <li>Act as administrator of various softwares and assign login facilities to Functional Assistants.</li>
+                        <li>Conduct random checks of files and registers to ensure proper maintenance of Records.</li>
+                        <li>Discharge various duties such as Advisor, Implementing Officer, Finance Manager, Tax assessment Authority, Licensing Authority, Permitting Authority, Registrar of Births & Deaths, Marriage Officer, Estate Officer, Drawing & Disbursing Officer, Assistant Public Information Officer etc.</li>
+                    </ul>
+                    <h4>Financial Functions:</h4>
+                    <ul>
+                        <li>Acts as DDO (Drawing and Disbursing Officer) and disburses pay and allowances of Village Secretariat staff and honorarium of Village Volunteers.</li>
+                        <li>Payments shall be made either by pay order or by digital transaction for all authorized expenditure.</li>
+                        <li>Prepare annual accounts, Budget Estimates and DCB statement for approval and submission to AP State Audit Department authorities by May 15th.</li>
+                        <li>Furnish returns, accounts statements, Administrative Report and other details when called for by Government or audit authority.</li>
+                        <li>Inspect or cause to be inspected the accounts of line departments under Grama Panchayat control.</li>
+                        <li>Coordinate with Functional Assistants in utilization of funds and render utilization certificates.</li>
+                    </ul>
+                    <h4>Community Welfare and Development:</h4>
+                    <ul>
+                        <li>Ensure payment of all types of social security pensions through Welfare Assistant.</li>
+                        <li>Furnish particulars about implementation of developmental activities.</li>
+                        <li>Prepare consolidated list of identified needs from data collected by Village Volunteers.</li>
+                        <li>Prepare Gram Panchayat Development Plans for holistic, sustainable development.</li>
+                        <li>Motivate women for formation of new self-help groups.</li>
+                        <li>Attend monthly staff meetings convened by President, Mandal Praja Parishad and Mandal Parishad Development Officer and other meetings convened by District Officer.</li>
+                        <li>Support V.T.D.A. in preparation and implementation of Micro plans.</li>
+                        <li>Coordinate and support Agriculture/Horticulture/Sericulture Assistant for agricultural development.</li>
+                        <li>Assist in implementation of Jalayagnam and Employment Guarantee scheme.</li>
+                        <li>Organize collection of seedling details, motivate protection, and collect survival percentage.</li>
+                        <li>Assist Education department in enrolment drive and improve functional literacy of adults.</li>
+                        <li>Assist in maintaining and updating Grama Panchayat Information Board and asset Information Boards.</li>
+                        <li>Mobilize public participation in Natural Resource Management.</li>
+                        <li>Cause beat of tom-tom and adopt other methods for informing people about events.</li>
+                        <li>Attend to any other duties as assigned by competent authorities.</li>
+                    </ul>
+                `
+            }
+        };
+
+        // --- 2025 Public Holiday Data (extracted from PDF) ---
+        // Date format is MM-DD-YYYY for easier parsing
+        const PUBLIC_HOLIDAYS_2025 = [
+            { name: "MAKARA SANKRANTI", name_telugu: "మకర సంక్రాంతి", date: "01-14-2025", day: "TUESDAY" },
+            { name: "REPUBLIC DAY", name_telugu: "గణతంత్ర దినోత్సవం", date: "01-26-2025", day: "SUNDAY" },
+            { name: "MAHASIVARATRI", name_telugu: "మహాశివరాత్రి", date: "02-26-2025", day: "WEDNESDAY" },
+            { name: "HOLI", name_telugu: "హోలీ", date: "03-14-2025", day: "FRIDAY" },
+            { name: "UGADI", name_telugu: "ఉగాది", date: "03-30-2025", day: "SUNDAY" },
+            { name: "EID-UL-FITR (RAMZAN)", name_telugu: "ఈద్-ఉల్-ఫితర్ (రంజాన్)", date: "03-31-2025", day: "MONDAY" },
+            { name: "ANNUAL CLOSING DAY", name_telugu: "వార్షిక ముగింపు దినం", date: "04-01-2025", day: "TUESDAY" },
+            { name: "SRIRAMA NAVAMI", name_telugu: "శ్రీరామ నవమి", date: "04-06-2025", day: "SUNDAY" },
+            { name: "Dr. B.R.AMBEDKAR'S BIRTHDAY", name_telugu: "డా. బి.ఆర్.అంబేద్కర్ జయంతి", date: "04-14-2025", day: "MONDAY" },
+            { name: "GOOD FRIDAY", name_telugu: "గుడ్ ఫ్రైడే", date: "04-18-2025", day: "FRIDAY" },
+            { name: "MAY DAY", name_telugu: "మే డే", date: "05-01-2025", day: "THRUSDAY" },
+            { name: "BAKRID (Eid-Ul-Zuha)", name_telugu: "బక్రీద్ (ఈద్-ఉల్-జుహా)", date: "06-07-2025", day: "SATURDAY" },
+            { name: "MOHARRUM", name_telugu: "మొహర్రం", date: "07-06-2025", day: "SUNDAY" },
+            { name: "INDEPENDENCE DAY", name_telugu: "స్వాతంత్ర్య దినోత్సవం", date: "08-15-2025", day: "FRIDAY" },
+            { name: "SRI KRISHNAASHTAMI", name_telugu: "శ్రీ కృష్ణాష్టమి", date: "08-16-2025", day: "SATURDAY" },
+            { name: "VINAYAKA CHAVITHI", name_telugu: "వినాయక చవితి", date: "08-27-2025", day: "WEDNESDAY" },
+            { name: "MILAD-UN-NABI (SAWS) 1447 Hijhri", name_telugu: "మిలాద్-ఉన్-నబీ (SAWS) 1447 హిజ్రీ", date: "09-05-2025", day: "FRIDAY" },
+            { name: "MAHATMA GANDHI JAYANTHI/ VIJAYA DASAMI", name_telugu: "మహాత్మా గాంధీ జయంతి/ విజయ దశమి", date: "10-02-2025", day: "THURSDAY" },
+            { name: "DEEPAVALI", name_telugu: "దీపావళి", date: "10-20-2025", day: "MONDAY" },
+            { name: "CHRISTMAS", name_telugu: "క్రిస్మస్", date: "12-25-2025", day: "THURSDAY" }
+        ];
+
+        async function fetchAndCacheAllOfficerData() {
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            const progressBarContainer = document.getElementById("progressBarContainer");
+            
+            // Show and reset progress bar
+            progressBarContainer.style.display = 'block';
+            progressBarContainer.style.opacity = '1';
+            progressBar.style.width = '0%';
+            progressBar.style.backgroundColor = ''; // Reset background color
+            progressText.textContent = LANGUAGE_TEXT[currentLanguage].progressBarLoading; // Set current language loading text
+
+            let width = 0;
+            const totalTime = 1500;
+            const intervalTime = 20;
+            const increment = (100 / (totalTime / intervalTime));
+
+            const progressInterval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(progressInterval);
+                    progressText.textContent = LANGUAGE_TEXT[currentLanguage].progressBarComplete;
+                    // Directly hide after completion animation if fetched
+                    setTimeout(() => {
+                        progressBarContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            progressBarContainer.style.display = 'none';
+                        }, 500); // Wait for fade out
+                    }, 500);
+                } else {
+                    width += increment;
+                    progressBar.style.width = width + "%";
+                }
+            }, intervalTime);
+
+            let data = null;
+            const cachedData = sessionStorage.getItem(CACHE_KEY);
+            const cachedTimestamp = sessionStorage.getItem(CACHE_KEY + '_timestamp');
+            const now = Date.now();
+
+            if (cachedData && cachedTimestamp && (now - parseInt(cachedTimestamp, 10) < CACHE_EXPIRY_MS)) {
+                try {
+                    data = JSON.parse(cachedData);
+                    console.log("Data loaded from single API cache.");
+                    allOfficersData = data; // Assign to global data array
+                    
+                    // Immediately complete and hide progress bar for cached data
+                    width = 100;
+                    clearInterval(progressInterval);
+                    progressBar.style.width = '100%'; // Ensure it visually completes
+                    progressText.textContent = LANGUAGE_TEXT[currentLanguage].progressBarComplete;
+                    setTimeout(() => {
+                        progressBarContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            progressBarContainer.style.display = 'none';
+                        }, 100); // Faster hide for cache
+                    }, 100); 
+
+                } catch (e) {
+                    console.error("Error parsing cached data, fetching new data.", e);
+                    sessionStorage.removeItem(CACHE_KEY);
+                    sessionStorage.removeItem(CACHE_KEY + '_timestamp');
+                }
+            }
+
+            if (!data) {
+                console.log("Fetching data from single API...");
+                try {
+                    const response = await fetch(API_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    data = await response.json();
+                    sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                    sessionStorage.setItem(CACHE_KEY + '_timestamp', now.toString());
+                    allOfficersData = data; // Assign to global data array
+                    console.log("Data fetched from API and cached.");
+                } catch (error) {
+                    console.error("Error fetching officer data:", error);
+                    progressText.textContent = LANGUAGE_TEXT[currentLanguage].progressBarError;
+                    progressBar.style.backgroundColor = '#dc3545';
+                    width = 100;
+                    clearInterval(progressInterval);
+                    setTimeout(() => { // Keep error message visible for a bit longer before hiding
+                        progressBarContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            progressBarContainer.style.display = 'none';
+                        }, 500);
+                    }, 1500);
+                    return;
+                }
+            }
+            // After data is fetched/loaded (either from API or cache), display it based on the current language
+            displayOfficers(); // Call without arguments, as it will use allOfficersData and currentLanguage
+            AOS.refresh();
+        }
+
+        function displayOfficers() { // Removed officersToDisplay parameter
+            const cardContainer = document.querySelector('.card-container');
+            const cardCountElement = document.getElementById('cardCount');
+            const mainTitleElement = document.getElementById('mainTitle');
+            const searchInput = document.getElementById('officerSearch');
+            const homeButtonTextElement = document.getElementById('homeButtonText'); // Get the span for button text
+            const calendarButtonTextElement = document.getElementById('calendarButtonText'); // Get the calendar button text
+
+            // Update static UI text based on current language
+            mainTitleElement.textContent = LANGUAGE_TEXT[currentLanguage].mainTitle;
+            searchInput.placeholder = LANGUAGE_TEXT[currentLanguage].searchPlaceholder;
+            homeButtonTextElement.textContent = LANGUAGE_TEXT[currentLanguage].homeButton;
+            calendarButtonTextElement.textContent = LANGUAGE_TEXT[currentLanguage].calendarButton;
+            document.getElementById('upcomingEventsTitle').textContent = LANGUAGE_TEXT[currentLanguage].upcomingEventsTitle;
+            document.getElementById('gramaSabhaEventTitle').textContent = LANGUAGE_TEXT[currentLanguage].gramaSabhaEventTitle;
+            document.getElementById('gramaSabhaEventDescription').textContent = LANGUAGE_TEXT[currentLanguage].gramaSabhaEventDescription;
+            document.getElementById('gramaSabhaEventDate').textContent = LANGUAGE_TEXT[currentLanguage].gramaSabhaEventDate;
+            document.querySelector('.upcoming-events-section .disclaimer').innerHTML = `<i>${LANGUAGE_TEXT[currentLanguage].disclaimerPrefix}</i>`;
+            document.getElementById('calendarDisclaimer').innerHTML = `<i>${LANGUAGE_TEXT[currentLanguage].disclaimerCalendarGO}</i>`;
+
+
+            cardContainer.innerHTML = ''; // Clear existing cards
+
+            // Apply search filter if there's a search term
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            // Filter from the global allOfficersData array
+            const filteredOfficers = allOfficersData.filter(officer => {
+                // Determine which field to use for search based on current language
+                const nameToSearch = (currentLanguage === 'english' && officer.emp_name_en && officer.emp_name_en.trim() !== '') ? officer.emp_name_en : officer.emp_name;
+                const desigToSearch = (currentLanguage === 'english' && officer.desig_en && officer.desig_en.trim() !== '') ? officer.desig_en : officer.desig;
+
+                const name = (nameToSearch || '').toLowerCase();
+                const designation = (desigToSearch || '').toLowerCase();
+                const phone = (officer.phone_no || '').toString();
+
+                return (
+                    name.includes(searchTerm) ||
+                    designation.includes(searchTerm) ||
+                    phone.includes(searchTerm)
+                );
+            });
+
+            if (!filteredOfficers || filteredOfficers.length === 0) {
+                cardContainer.innerHTML = `<p style="color: grey; font-size: 1.5em; text-align: center; width: 100%; margin-top: 50px;">${LANGUAGE_TEXT[currentLanguage].noOfficersFound}</p>`;
+                cardCountElement.textContent = `${LANGUAGE_TEXT[currentLanguage].officersFound} 0`;
+                return;
+            }
+
+            filteredOfficers.forEach(officer => {
+                // Determine which field to use for display based on current language
+                const officerName = (currentLanguage === 'english' && officer.emp_name_en && officer.emp_name_en.trim() !== '') ? officer.emp_name_en : officer.emp_name;
+                const officerDesig = (currentLanguage === 'english' && officer.desig_en && officer.desig_en.trim() !== '') ? officer.desig_en : officer.desig;
+
+                // Determine job chart content
+                let jobChartHtml = '';
+                let isPanchayatSecretary = false;
+
+                // Use the provided sample data to detect 'ANM' and 'Leave' status
+                let leaveInfo = '';
+                if (officer.Status && officer.Status.toLowerCase() === 'leave') {
+                    const statusText = currentLanguage === 'english' ? 'On Leave' : 'సెలవులో ఉన్నారు';
+                    const commentsText = (officer.comments && officer.comments.trim() !== '') ? (currentLanguage === 'english' ? ` (${officer.comments})` : ` (${officer.comments})`) : '';
+                    leaveInfo = `<p style="color: red; font-weight: bold; margin-top: 10px; font-size: 0.9em;">${statusText}${commentsText}</p>`;
+                }
+                
+                if (officerDesig && officerDesig.toLowerCase().includes('panchayat secretary')) {
+                    isPanchayatSecretary = true;
+                    jobChartHtml = JOB_CHART_CONTENT['Panchayat Secretary (Grade V)'][currentLanguage] || '';
+                } else if (JOB_CHART_CONTENT['general']) {
+                    jobChartHtml = JOB_CHART_CONTENT['general'][currentLanguage] || '';
+                }
+                
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', '100');
+
+                card.innerHTML = `
+                    <img src="https://gangudupalli-in-website.web.app/photos/${officer.emp_img}.jpeg" alt="${officerDesig}">
+                    <h2>${officerName}</h2>
+                    <p class="nameplate">${officerDesig}</p>
+                    <div class="screw top-left"></div>
+                    <div class="screw top-right"></div>
+                    <div class="screw bottom-left"></div>
+                    <div class="screw bottom-right"></div>
+                    <p><a href="tel:${officer.phone_no}">${officer.phone_no}</a></p>
+                    ${leaveInfo}
+                    ${jobChartHtml ? `
+                        <button class="job-chart-toggle-btn" 
+                                data-officer-name="${officerName}" 
+                                data-officer-desig="${officerDesig}"
+                                data-job-chart-content-key="${isPanchayatSecretary ? 'Panchayat Secretary (Grade V)' : 'general'}">
+                            ${LANGUAGE_TEXT[currentLanguage].jobChartToggleButton}
+                        </button>
+                    ` : ''}
+                `;
+                cardContainer.appendChild(card);
+            });
+            cardCountElement.textContent = `${LANGUAGE_TEXT[currentLanguage].officersFound} ${filteredOfficers.length}`;
+            AOS.refresh(); // Refresh AOS after new cards are displayed
+
+            // Add event listeners for job chart toggles after cards are created
+            document.querySelectorAll('.job-chart-toggle-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const officerName = this.dataset.officerName;
+                    const officerDesig = this.dataset.officerDesig;
+                    const jobChartContentKey = this.dataset.jobChartContentKey;
+                    
+                    const modalTitle = document.getElementById('modalJobChartTitle');
+                    const modalContentDiv = document.getElementById('modalJobChartContent');
+                    const modalOverlay = document.getElementById('jobChartModalOverlay');
+
+                    modalTitle.innerHTML = `${LANGUAGE_TEXT[currentLanguage].jobChartTitlePrefix} ${officerName} (${officerDesig})`;
+                    modalContentDiv.innerHTML = JOB_CHART_CONTENT[jobChartContentKey][currentLanguage] || '<p>Job chart content not available.</p>';
+                    
+                    modalOverlay.classList.add('visible'); // Show the modal
+                    document.body.style.overflow = 'hidden'; // Prevent body scrolling when modal is open
+                });
+            });
+        }
+
+        // --- Job Chart Modal Close Functionality ---
+        const jobChartModalOverlay = document.getElementById('jobChartModalOverlay');
+        const jobChartModalCloseButton = document.getElementById('jobChartModalCloseButton');
+
+        jobChartModalCloseButton.addEventListener('click', () => {
+            jobChartModalOverlay.classList.remove('visible');
+            document.body.style.overflow = ''; // Restore body scrolling
+        });
+
+        // Close job chart modal if clicked outside content
+        jobChartModalOverlay.addEventListener('click', (event) => {
+            if (event.target === jobChartModalOverlay) {
+                jobChartModalOverlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // --- Calendar Modal Functionality ---
+        const calendarButton = document.getElementById('calendarButton');
+        const calendarModalOverlay = document.getElementById('calendarModalOverlay');
+        const calendarModalCloseButton = document.getElementById('calendarModalCloseButton');
+        const currentMonthYearDisplay = document.getElementById('currentMonthYear');
+        const calendarGridContainer = document.getElementById('calendarGridSingleMonth');
+        const prevMonthBtn = document.getElementById('prevMonthBtn');
+        const nextMonthBtn = document.getElementById('nextMonthBtn');
+
+        let currentCalendarDate = new Date(); // Start with current month/year
+
+        function renderCalendar(date, holidays) {
+            const year = date.getFullYear();
+            const month = date.getMonth(); // 0-indexed
+
+            const firstDayOfMonth = new Date(year, month, 1);
+            const lastDayOfMonth = new Date(year, month + 1, 0);
+            const numDays = lastDayOfMonth.getDate();
+            const startDay = firstDayOfMonth.getDay(); // 0 for Sunday
+
+            const monthName = firstDayOfMonth.toLocaleString(currentLanguage === 'english' ? 'en-US' : 'te-IN', { month: 'long' });
+            currentMonthYearDisplay.textContent = `${monthName} ${year}`;
+
+            const weekdaysShort = currentLanguage === 'english' ? LANGUAGE_TEXT.english.weekdaysShort : LANGUAGE_TEXT.telugu.weekdaysShort;
+
+            let calendarHtml = '<div class="weekdays">';
+            weekdaysShort.forEach(day => {
+                calendarHtml += `<div class="weekday-short">${day}</div>`;
+            });
+            calendarHtml += '</div><div class="days-grid">'; /* Changed to days-grid */
+
+            // Empty cells for days before the 1st
+            for (let j = 0; j < startDay; j++) {
+                calendarHtml += '<div class="calendar-day other-month"></div>';
+            }
+
+            // Days of the month
+            const today = new Date(); // Get today's date once
+            // Adjust today to current location's date if needed, but typically new Date() handles client timezone
+            const todayMonth = today.getMonth();
+            const todayDate = today.getDate();
+            const todayYear = today.getFullYear();
+
+
+            for (let dayNum = 1; dayNum <= numDays; dayNum++) {
+                const currentMonthPadded = (month + 1).toString().padStart(2, '0');
+                const currentDayPadded = dayNum.toString().padStart(2, '0');
+                const dateString = `${currentMonthPadded}-${currentDayPadded}-${year}`; // Format for lookup
+                
+                const holiday = holidays.find(h => h.date === dateString);
+                const isCurrentDay = (dayNum === todayDate && month === todayMonth && year === todayYear);
+
+                const holidayClass = holiday ? 'holiday' : '';
+                const todayClass = isCurrentDay ? 'today' : '';
+                
+                // Get holiday name in current language for tooltip
+                const holidayName = holiday ? (currentLanguage === 'english' ? holiday.name : holiday.name_telugu || holiday.name) : '';
+                
+                calendarHtml += `
+                    <div class="calendar-day ${holidayClass} ${todayClass}" 
+                         title="${holiday ? holidayName : ''}">
+                        <span class="day-number">${dayNum}</span>
+                        </div>
+                `;
+            }
+
+            calendarHtml += '</div>'; // Close days-grid
+            calendarGridContainer.innerHTML = calendarHtml;
+        }
+
+        calendarButton.addEventListener('click', () => {
+            // Set currentCalendarDate to a date in 2025 if outside 2025, otherwise use current month/year
+            const currentYear = new Date().getFullYear();
+            if (currentYear < 2025) {
+                 currentCalendarDate = new Date(2025, 0, 1); // Start at Jan 2025
+            } else if (currentYear > 2025) {
+                 currentCalendarDate = new Date(2025, 11, 1); // End at Dec 2025
+            } else {
+                 currentCalendarDate = new Date(); // Current month/year in 2025
+            }
+
+            renderCalendar(currentCalendarDate, PUBLIC_HOLIDAYS_2025);
+            calendarModalOverlay.classList.add('visible');
+            document.body.style.overflow = 'hidden'; // Prevent body scrolling
+        });
+
+        prevMonthBtn.addEventListener('click', () => {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() - 1);
+            // Clamp year to 2025
+            if (currentCalendarDate.getFullYear() < 2025) {
+                currentCalendarDate.setFullYear(2025);
+                currentCalendarDate.setMonth(0); // Set to January 2025
+            }
+            renderCalendar(currentCalendarDate, PUBLIC_HOLIDAYS_2025);
+        });
+
+        nextMonthBtn.addEventListener('click', () => {
+            currentCalendarDate.setMonth(currentCalendarDate.getMonth() + 1);
+            // Clamp year to 2025
+            if (currentCalendarDate.getFullYear() > 2025) {
+                currentCalendarDate.setFullYear(2025);
+                currentCalendarDate.setMonth(11); // Set to December 2025
+            }
+            renderCalendar(currentCalendarDate, PUBLIC_HOLIDAYS_2025);
+        });
+
+
+        calendarModalCloseButton.addEventListener('click', () => {
+            calendarModalOverlay.classList.remove('visible');
+            document.body.style.overflow = ''; // Restore body scrolling
+        });
+
+        // Close calendar modal if clicked outside content
+        calendarModalOverlay.addEventListener('click', (event) => {
+            if (event.target === calendarModalOverlay) {
+                calendarModalOverlay.classList.remove('visible');
+                document.body.style.overflow = '';
+            }
+        });
+
+
+        // --- Search Functionality ---
+        const searchInput = document.getElementById('officerSearch');
+
+        searchInput.addEventListener('input', () => {
+            displayOfficers(); // Re-display officers (which will apply the search filter and current language)
+        });
+
+        // --- Theme Management ---
+        const themeButtons = document.querySelectorAll('.theme-button');
+        const body = document.body;
+        const THEME_STORAGE_KEY = 'selectedTheme';
+
+        function applyTheme(themeName) {
+            body.className = body.className.split(' ').filter(c => !c.startsWith('theme-')).join(' ');
+            body.classList.add(`theme-${themeName}`);
+
+            themeButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.theme === themeName) {
+                    button.classList.add('active');
+                }
+            });
+            localStorage.setItem(THEME_STORAGE_KEY, themeName);
+        }
+
+        // --- Language Management ---
+        const langButtons = document.querySelectorAll('.lang-button');
+        const LANG_STORAGE_KEY = 'selectedLanguage';
+
+        function applyLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem(LANG_STORAGE_KEY, lang);
+
+            langButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.lang === lang) {
+                    button.classList.add('active');
+                }
+            });
+            // Clear search input when language changes
+            searchInput.value = '';
+            // Re-display data based on the new language (no re-fetch needed)
+            displayOfficers(); // Call without arguments, as it uses allOfficersData
+            // Re-render calendar if open, so months/weekdays are translated
+            if (calendarModalOverlay.classList.contains('visible')) {
+                renderCalendar(currentCalendarDate, PUBLIC_HOLIDAYS_2025);
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply theme first
+            const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+            applyTheme(savedTheme);
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.theme);
+                });
+            });
+
+            // Apply language second
+            const savedLanguage = localStorage.getItem(LANG_STORAGE_KEY) || 'telugu';
+            currentLanguage = savedLanguage; // Set currentLanguage before fetching data
+            langButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.lang === savedLanguage) {
+                    button.classList.add('active');
+                }
+            });
+
+            fetchAndCacheAllOfficerData(); // This will fetch data and then call displayOfficers
+            
+            AOS.init({
+                duration: 1200,
+                once: false,
+                easing: 'ease-out-cubic',
+            });
+        });
+    </script>
+
+    <script src="./GP Office _ Gangudupalle_files/aos.js.download"></script>
+</body>
+</html>

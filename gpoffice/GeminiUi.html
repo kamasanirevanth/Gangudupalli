@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GP Office | Gangudupalle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mallanna&display=swap" rel="stylesheet">
+    
+    <link href="./GP Office _ Gangudupalle_files/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Mallanna', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.5s ease; /* Smooth transition for theme changes */
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 50px;
+            padding: 20px;
+            z-index: 1;
+        }
+
+        /* Card Base Styles */
+        .card {
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            border-radius: 20px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.6s ease, border 0.6s ease;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 70%);
+            transform: translateX(-100%) rotate(45deg);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            transform: translateX(100%) rotate(45deg);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.03);
+        }
+
+        .card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .card h2 {
+            font-size: 26px;
+            margin: 10px 0;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .card p {
+            font-size: 20px;
+            margin: 5px 0;
+            font-weight: 500;
+            transition: color 0.5s ease;
+        }
+
+        .card a {
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .card a:hover::after {
+            content: '';
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            opacity: 0.8;
+        }
+
+        /* Screws */
+        .screw {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            z-index: 2;
+            transition: background-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .screw:before, .screw:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 6px;
+            height: 1px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            transition: background-color 0.5s ease;
+        }
+        .screw:after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .screw.top-left { top: 15px; left: 15px; }
+        .screw.top-right { top: 15px; right: 15px; }
+        .screw.bottom-left { bottom: 15px; left: 15px; }
+        .screw.bottom-right { bottom: 15px; right: 15px; }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 90%;
+            max-width: 600px;
+            height: 40px;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 30px;
+            transition: background 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 20px;
+            transition: width 0.7s ease-out, background 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+            animation: progressShimmer 2s infinite;
+        }
+
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        /* Home Button */
+        .home-button {
+            backdrop-filter: blur(15px);
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Mallanna', sans-serif;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            outline: none; /* Remove default focus outline */
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .home-icon {
+            font-size: 20px;
+            transition: filter 0.5s ease;
+        }
+
+        /* --- Theme Styles --- */
+
+        /* Light Theme (Default) */
+        body.theme-light {
+            background: linear-gradient(135deg, #e0f2f7, #f7e0f2, #e0f7e0);
+        }
+        body.theme-light h1 {
+            color: #333;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .card:hover {
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.65);
+        }
+        body.theme-light .card img {
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .card:hover img {
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+        body.theme-light .card h2 {
+            color: #444;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .card p {
+            color: #6a6a6a;
+        }
+        body.theme-light .card a {
+            color: #007bff;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        body.theme-light .card a:hover {
+            color: #0056b3;
+        }
+        body.theme-light .card a::after {
+            background-color: #007bff;
+        }
+        body.theme-light .screw {
+            background-color: rgba(0, 0, 0, 0.1);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.3);
+        }
+        body.theme-light .screw:before, body.theme-light .screw:after {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        body.theme-light .progress-container {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        body.theme-light .progress-bar {
+            background: linear-gradient(90deg, #89f7fe, #66a6ff);
+        }
+        body.theme-light .progress-text {
+            color: #333;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+        body.theme-light .home-button {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        body.theme-light .home-button:hover {
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        body.theme-light .home-icon {
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Dark Theme */
+        body.theme-dark {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        }
+        body.theme-dark h1 {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        body.theme-dark .card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        body.theme-dark .card:hover {
+            box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        body.theme-dark .card img {
+            border: 4px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .card:hover img {
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+        body.theme-dark .card h2 {
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .card p {
+            color: rgba(255, 230, 0, 0.8);
+        }
+        body.theme-dark .card a {
+            color: #87ceeb;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .card a:hover {
+            color: #00ffff;
+        }
+        body.theme-dark .card a::after {
+            background-color: #00ffff;
+        }
+        body.theme-dark .screw {
+            background-color: rgba(255, 255, 255, 0.2);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2), inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+        }
+        body.theme-dark .screw:before, body.theme-dark .screw:after {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        body.theme-dark .progress-bar {
+            background: linear-gradient(90deg, #6dd5ed, #2193b0);
+        }
+        body.theme-dark .progress-text {
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        body.theme-dark .home-button {
+            background: rgba(128, 128, 128, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        body.theme-dark .home-button:hover {
+            background: rgba(128, 128, 128, 0.5);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        body.theme-dark .home-icon {
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Additional Themes */
+        body.theme-ocean {
+            background: linear-gradient(135deg, #00c6ff, #0072ff, #003e8f); /* Deep blues */
+        }
+        body.theme-ocean h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-ocean .card { background: rgba(0, 198, 255, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-ocean .card:hover { background: rgba(0, 198, 255, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-ocean .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-ocean .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-ocean .card p { color: #aaffea; } /* Light teal */
+        body.theme-ocean .card a { color: #87ceeb; }
+        body.theme-ocean .card a:hover { color: #00ffff; }
+        body.theme-ocean .card a::after { background-color: #00ffff; }
+        body.theme-ocean .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-ocean .screw:before, body.theme-ocean .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-ocean .progress-bar { background: linear-gradient(90deg, #6dd5ed, #2193b0); }
+        body.theme-ocean .progress-text { color: white; }
+        body.theme-ocean .home-button { background: rgba(0,198,255,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-ocean .home-button:hover { background: rgba(0,198,255,0.45); }
+        body.theme-ocean .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+
+        body.theme-forest {
+            background: linear-gradient(135deg, #1d976c, #3f8f6b, #93f9b9); /* Greens */
+        }
+        body.theme-forest h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-forest .card { background: rgba(29, 151, 108, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-forest .card:hover { background: rgba(29, 151, 108, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-forest .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-forest .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-forest .card p { color: #e0ffb3; } /* Light yellow-green */
+        body.theme-forest .card a { color: #98fb98; }
+        body.theme-forest .card a:hover { color: #66ff66; }
+        body.theme-forest .card a::after { background-color: #66ff66; }
+        body.theme-forest .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-forest .screw:before, body.theme-forest .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-forest .progress-bar { background: linear-gradient(90deg, #a8e063, #56ab2f); }
+        body.theme-forest .progress-text { color: white; }
+        body.theme-forest .home-button { background: rgba(29,151,108,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-forest .home-button:hover { background: rgba(29,151,108,0.45); }
+        body.theme-forest .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+
+        body.theme-sunset {
+            background: linear-gradient(135deg, #f09819, #ff5733, #e81d1d); /* Oranges, reds */
+        }
+        body.theme-sunset h1 { color: rgba(255,255,255,0.9); text-shadow: 0 0 8px rgba(0,0,0,0.4); }
+        body.theme-sunset .card { background: rgba(240, 152, 25, 0.15); border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4); }
+        body.theme-sunset .card:hover { background: rgba(240, 152, 25, 0.25); box-shadow: 0 16px 48px 0 rgba(0,0,0,0.6); }
+        body.theme-sunset .card img { border: 4px solid rgba(255,255,255,0.5); }
+        body.theme-sunset .card h2 { color: rgba(255,255,255,0.95); }
+        body.theme-sunset .card p { color: #ffd699; } /* Light orange */
+        body.theme-sunset .card a { color: #ffbe82; }
+        body.theme-sunset .card a:hover { color: #ffab57; }
+        body.theme-sunset .card a::after { background-color: #ffab57; }
+        body.theme-sunset .screw { background-color: rgba(255,255,255,0.25); }
+        body.theme-sunset .screw:before, body.theme-sunset .screw:after { background-color: rgba(0,0,0,0.4); }
+        body.theme-sunset .progress-bar { background: linear-gradient(90deg, #ff9a9e, #fad0c4); }
+        body.theme-sunset .progress-text { color: white; }
+        body.theme-sunset .home-button { background: rgba(240,152,25,0.3); border: 1px solid rgba(255,255,255,0.4); color: white; }
+        body.theme-sunset .home-button:hover { background: rgba(240,152,25,0.45); }
+        body.theme-sunset .home-icon { filter: drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+
+        /* Theme Selection Buttons */
+        .theme-selector {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.3); /* Light glass background for selector */
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .theme-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid transparent; /* Default */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none; /* Remove default focus outline */
+        }
+
+        .theme-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-button.active {
+            border-color: #007bff; /* Highlight active theme */
+            box-shadow: 0 0 0 3px #007bff55, 0 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(1.15);
+        }
+
+        /* Specific theme button colors */
+        .theme-button.light { background-color: #e0f2f7; }
+        .theme-button.dark { background-color: #1a2a6c; }
+        .theme-button.ocean { background-color: #0072ff; }
+        .theme-button.forest { background-color: #1d976c; }
+        .theme-button.sunset { background-color: #f09819; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            .card-container {
+                flex-direction: column; /* Stack cards vertically */
+                align-items: center; /* Center cards */
+                gap: 30px; /* Reduce gap */
+                padding: 10px;
+            }
+            .card {
+                width: 90%; /* Make cards take more width */
+                max-width: 320px; /* Max width for readability */
+                padding: 20px; /* Reduce padding */
+            }
+            .card img {
+                width: 100px;
+                height: 100px;
+            }
+            .card h2 {
+                font-size: 22px;
+            }
+            .card p {
+                font-size: 18px;
+            }
+            .home-button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            .progress-container {
+                width: 95%;
+            }
+            .theme-selector {
+                gap: 8px; /* Smaller gap for buttons */
+                padding: 8px;
+            }
+            .theme-button {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 15px;
+            }
+            .card {
+                width: 95%; /* Even more width on very small screens */
+                padding: 15px;
+            }
+            .card img {
+                width: 80px;
+                height: 80px;
+            }
+            .card h2 {
+                font-size: 20px;
+            }
+            .card p {
+                font-size: 16px;
+            }
+            .home-button {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            .theme-selector {
+                padding: 5px;
+            }
+            .theme-button {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body class="theme-light" data-aos-easing="ease" data-aos-duration="1200" data-aos-delay="0">
+    <button class="home-button" onclick="window.location.href='../index.html';">
+        <span class="home-icon">🏠</span> Home
+    </button>
+
+    <h1>గ్రామ సచివాలయ అధికారుల వివరాలు</h1>
+    
+    <div class="theme-selector">
+        <button class="theme-button light active" data-theme="light" title="Light Theme"></button>
+        <button class="theme-button dark" data-theme="dark" title="Dark Theme"></button>
+        <button class="theme-button ocean" data-theme="ocean" title="Ocean Theme"></button>
+        <button class="theme-button forest" data-theme="forest" title="Forest Theme"></button>
+        <button class="theme-button sunset" data-theme="sunset" title="Sunset Theme"></button>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+        <div class="progress-text" id="progressText">దయచేసి వేచి ఉండండి</div>
+    </div>
+
+    <div class="card-container">
+        </div>
+
+    <script>
+        const API_URL = 'https://script.googleusercontent.com/macros/echo?user_content_key=j3PKf-33vXe_gaERfsEk9SsPu8sNtDS5zSMhIU3rGur_wwb31GMCet9pdy8Wm2SXOWtVxN1eA7T4yhK1xiPmBEr35XuhcbAam5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNscr69Uh1D-E_TugKc8BA9s_HpxKCr0bMhzPMNdbJwdOTIXDjv2lRXiiL3So94kyyPcuYmlrHfU8gex96wWcqVsi1pFjr4ESNz9Jw9Md8uu&lib=MZAVfprUFcRs6bLZPSspN66GLciEtmt4z';
+        const CACHE_KEY = 'officerDataCache';
+        const CACHE_EXPIRY_MS = 5 * 60 * 1000; // 5 minutes cache expiry
+
+        async function fetchOfficerData() {
+            const progressBar = document.getElementById("progressBar");
+            const progressText = document.getElementById("progressText");
+            let width = 0;
+            const totalTime = 3000; // Total time for progress bar to complete (in ms)
+            const intervalTime = 50; // Update interval (in ms)
+            const increment = (100 / (totalTime / intervalTime));
+
+            const progressInterval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(progressInterval);
+                    progressText.textContent = "పూర్తయింది!";
+                    setTimeout(() => {
+                        document.querySelector('.progress-container').style.opacity = '0';
+                        setTimeout(() => {
+                            document.querySelector('.progress-container').style.display = 'none';
+                        }, 500); // Fade out then hide
+                    }, 500);
+                } else {
+                    width += increment;
+                    progressBar.style.width = width + "%";
+                }
+            }, intervalTime);
+
+            let data = null;
+            const cachedData = sessionStorage.getItem(CACHE_KEY);
+            const cachedTimestamp = sessionStorage.getItem(CACHE_KEY + '_timestamp');
+
+            if (cachedData && cachedTimestamp && (Date.now() - parseInt(cachedTimestamp, 10) < CACHE_EXPIRY_MS)) {
+                // Use cached data if it's not expired
+                try {
+                    data = JSON.parse(cachedData);
+                    console.log("Data loaded from cache.");
+                    width = 100; // Immediately complete progress bar if from cache
+                } catch (e) {
+                    console.error("Error parsing cached data, fetching new data.", e);
+                    sessionStorage.removeItem(CACHE_KEY); // Clear corrupt cache
+                    sessionStorage.removeItem(CACHE_KEY + '_timestamp');
+                }
+            }
+
+            if (!data) {
+                // No valid cached data, fetch from API
+                console.log("Fetching data from API...");
+                try {
+                    const response = await fetch(API_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    data = await response.json();
+                    sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                    sessionStorage.setItem(CACHE_KEY + '_timestamp', Date.now().toString());
+                    console.log("Data fetched from API and cached.");
+                } catch (error) {
+                    console.error("Error fetching officer data:", error);
+                    progressText.textContent = "లోడ్ చేయడంలో లోపం వచ్చింది.";
+                    progressBar.style.backgroundColor = '#dc3545';
+                    width = 100;
+                    return; // Stop if data fetch fails
+                }
+            }
+
+            const cardContainer = document.querySelector('.card-container');
+            cardContainer.innerHTML = ''; // Clear existing cards
+
+            data.forEach(officer => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', '100');
+
+                card.innerHTML = `
+                    <img src="https://gangudupalli-in-website.web.app/photos/${officer.emp_img}.jpeg" alt="${officer.desig}">
+                    <h2>${officer.emp_name}</h2>
+                    <p class="nameplate">${officer.desig}</p>
+                    <div class="screw top-left"></div>
+                    <div class="screw top-right"></div>
+                    <div class="screw bottom-left"></div>
+                    <div class="screw bottom-right"></div>
+                    <p><a href="tel:${officer.phone_no}">${officer.phone_no}</a></p>
+                `;
+                cardContainer.appendChild(card);
+            });
+            AOS.refresh(); // Refresh AOS to pick up new elements
+        }
+
+        // --- Theme Management ---
+        const themeButtons = document.querySelectorAll('.theme-button');
+        const body = document.body;
+        const THEME_STORAGE_KEY = 'selectedTheme';
+
+        function applyTheme(themeName) {
+            // Remove all theme classes
+            body.className = body.className.split(' ').filter(c => !c.startsWith('theme-')).join(' ');
+            // Add the new theme class
+            body.classList.add(`theme-${themeName}`);
+
+            // Update active button state
+            themeButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.dataset.theme === themeName) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Store theme preference
+            localStorage.setItem(THEME_STORAGE_KEY, themeName);
+        }
+
+        // Initialize theme on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light'; // Default to light
+            applyTheme(savedTheme);
+
+            themeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    applyTheme(button.dataset.theme);
+                });
+            });
+
+            fetchOfficerData(); // Fetch data after theme is applied
+            AOS.init({
+                duration: 1200,
+                once: false,
+                easing: 'ease-out-cubic',
+            });
+        });
+    </script>
+
+    <script src="./GP Office _ Gangudupalle_files/aos.js.download"></script>
+</body>
+</html>
