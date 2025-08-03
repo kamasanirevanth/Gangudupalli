@@ -7,15 +7,16 @@
     <style>
         /* Global Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #c0de83, #78e08f);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            color: #fff;
+            color: #222;
         }
 
         .container {
@@ -23,10 +24,13 @@
             flex-wrap: wrap;
             justify-content: center;
             max-width: 1200px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 25px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.18);
             width: 95%;
         }
 
@@ -40,31 +44,39 @@
 
         .photo-container {
             margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 18px 15px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(31, 38, 135, 0.10);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .photo-container img {
             width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(31,38,135,0.10);
+            transition: transform 0.3s;
         }
 
         .photo-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 12px 32px rgba(31, 38, 135, 0.18);
         }
 
         h3, h4 {
             margin: 10px 0;
             font-size: 1.2rem;
+            color: #007bff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         p {
             margin: 5px 0;
             font-size: 1rem;
+            color: #333;
         }
 
         /* Right Section Styling */
@@ -77,30 +89,36 @@
         }
 
         .ward-box {
-            padding: 15px;
+            padding: 18px 12px;
             text-align: center;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
-            color: #fff;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.22);
+            box-shadow: 0 4px 16px rgba(31, 38, 135, 0.10);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #222;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .ward-box img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-bottom: 10px;
-            transition: transform 0.3s ease;
+            box-shadow: 0 2px 8px rgba(31,38,135,0.10);
+            transition: transform 0.3s;
         }
 
         .ward-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+            transform: translateY(-7px) scale(1.03);
+            box-shadow: 0 12px 32px rgba(31, 38, 135, 0.18);
         }
 
         h4 {
             font-size: 1.1rem;
             margin-bottom: 5px;
+            color: #007bff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         /* Responsive Design */
@@ -124,7 +142,7 @@
             margin-top: 20px;
             text-align: center;
             font-size: 0.9rem;
-            color: #fff;
+            color: #007bff;
             padding: 10px 0;
         }
     </style>
@@ -143,7 +161,7 @@
             <div class="photo-container">
                 <img src="./People Representatives_files/upa-sarpanch.jpg" alt="Upa-Sarpanch">
                 <h4>Mora Chengaiah</h4>
-                <p>Ward 7 &amp; Upa-Sarpanch</p>
+                <p>Upa-Sarpanch &amp; Ward 7</p>
                 <p>+91 8688869239</p>
             </div>
         </div>

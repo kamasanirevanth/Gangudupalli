@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - పేజీ కనుగొనబడలేదు</title>
+    <!-- Sree Krushnadevaraya font for Telugu (Google Fonts) -->
+    <link href="https://fonts.googleapis.com/css2?family=Sree+Krushnadevaraya&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            font-family: 'Sree Krushnadevaraya', 'Segoe UI', 'Noto Sans Telugu', Arial, sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 40px 60px;
+            text-align: center;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .error-message {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .datetime {
+            margin-top: 30px;
+            font-size: 1.3rem;
+            color: #222;
+            background: rgba(255,255,255,0.5);
+            border-radius: 10px;
+            padding: 12px 20px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass">
+        <div class="error-code">404</div>
+        <div class="error-message">పేజీ కనుగొనబడలేదు</div>
+        <div class="datetime" id="datetime"></div>
+        <div class="datetime" id="telugu-calendar" style="margin-top:15px;"></div>
+    </div>
+    <script>
+        // Telugu weekday names
+        const weekdays = [
+            'ఆదివారం', 'సోమవారం', 'మంగళవారం', 'బుధవారం', 'గురువారం', 'శుక్రవారం', 'శనివారం'
+        ];
+        // Telugu month names
+        const months = [
+            'జనవరి', 'ఫిబ్రవరి', 'మార్చి', 'ఏప్రిల్', 'మే', 'జూన్', 'జూలై', 'ఆగస్టు', 'సెప్టెంబర్', 'అక్టోబర్', 'నవంబర్', 'డిసెంబర్'
+        ];
+        function pad(n) { return n < 10 ? '0' + n : n; }
+        function updateDateTime() {
+            const now = new Date();
+            const weekday = weekdays[now.getDay()];
+            const day = pad(now.getDate());
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            const hours = pad(now.getHours());
+            const minutes = pad(now.getMinutes());
+            const seconds = pad(now.getSeconds());
+            const dateStr = `${day} ${month} ${year}`;
+            const timeStr = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('datetime').innerHTML = `తేదీ: ${dateStr}<br>సమయం: ${timeStr}<br>వారం పేరు: ${weekday}`;
+        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // Telugu Calendar (static for August 3, 2025)
+        function updateTeluguCalendar() {
+            // For August 3, 2025: శ్రావణ మాసం, శుక్ల పక్షం, తృతీయ తిథి, పింగళి నామ సంవత్సరం
+            // In a real app, use a Panchangam API or library for dynamic calculation
+            const teluguMonth = 'శ్రావణ మాసం';
+            const paksham = 'శుక్ల పక్షం';
+            const tithi = 'తృతీయ తిథి';
+            const samvatsaram = 'పింగళి నామ సంవత్సరం';
+            document.getElementById('telugu-calendar').innerHTML =
+                `<b>తెలుగు క్యాలెండర్:</b><br>
+                మాసం: ${teluguMonth}<br>
+                పక్షం: ${paksham}<br>
+                తిథి: ${tithi}<br>
+                సంవత్సరం: ${samvatsaram}`;
+        }
+        updateTeluguCalendar();
+    </script>
+</body>
+</html>

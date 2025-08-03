@@ -207,6 +207,7 @@
             <div class="modal-content glass-modal">
                 <h2>Select Financial Year</h2>
                 <div class="year-list">
+                    <br><br><br><br><br>
                     <button onclick="showProgress('FY 2024-2025')">FY 2024-2025</button>
                     <button onclick="showProgress('FY 2023-2024')">FY 2023-2024</button>
                     <button onclick="showProgress('FY 2022-2023')">FY 2022-2023</button>
@@ -236,10 +237,55 @@
         }
     </script>
     </div>
+<marquee behavior="scroll" direction="left" scrollamount="5" style="color: red; font-weight: bold;">Updates are under progress...Soon it will be available</marquee>
+                </tr>
+            </tbody></table>
+        </div>
+    </div>
 
+    <!-- Modal -->
+    <div id="popupModal" class="modal">
+        <div class="modal-content">
+            <h2>Coming Soon</h2>
+            <p>Fund Utilization for the selected financial year will be available shortly.</p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showPopup() {
+            document.getElementById('popupModal').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popupModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('popupModal');
+            if (event.target === modal) {
+                closePopup();
+            }
+        }
+    </script>
     <!-- Content -->
     <div class="container">
         <div class="card">
+            <h2>Fund Utilization 2024-2025</h2>
+            <table>
+                <tbody><tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>Expenses</td>
+                    <td>Available soon <span class="progress-icon" title="Under Progress"></span></td>
+                    
+                </tr>
+            </tbody></table>
+        </div>
+                <div class="card">
             <h2>Fund Utilization 2023-2024</h2>
             <table>
                 <tbody><tr>
@@ -262,7 +308,10 @@
                 </tr>
                 <tr>
                     <td>Expenses</td>
-                    <td>Available soon <span class="progress-icon" title="Under Progress"></span></td>
+                    <td>Available soon <span class="progress-icon" title="Under Progress"></span>
+                    
+                    </td>
+
 </style>
 <style>
     /* Under Progress Spinner Icon */
