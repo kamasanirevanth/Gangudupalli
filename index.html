@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fund Utilization</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       /* General Styles */
       body {
@@ -297,9 +299,7 @@
         >Representatives</a
       >
       <a href="https://gangudupalli.in/gpoffice/index.html">GP Office Staff</a>
-      <button class="glass-btn" onclick="openYearMenu()" aria-label="Funds Utilization">
-        Funds Utilization
-      </button>
+
 
       <div id="yearMenuModal" class="modal year-modal-flex">
         <div class="modal-content glass-modal">
@@ -359,19 +359,7 @@
     >
       Updates are under progress...Currently FY 2025-2026,2024-25 & 2023-24 are available and remaining are being prepared.
     </marquee>
-    <div class="disclaimer" style="margin:2em auto 1em auto;max-width:700px;text-align:left;color:#d32f2f;font-weight:500;background:rgba(255,255,255,0.22);padding:1.2em 2em 1em 2em;border-radius:14px;box-shadow:0 4px 16px rgba(31,38,135,0.10);">
-      <div style="display:flex;align-items:center;gap:0.7em;margin-bottom:0.5em;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="12" fill="#d32f2f" opacity="0.12"/><path d="M12 8v4m0 4h.01" stroke="#d32f2f" stroke-width="2" stroke-linecap="round"/></svg>
-        <span style="font-size:1.15em;font-weight:600;">Disclaimer</span>
-      </div>
-      <div style="font-size:1em;line-height:1.7;color:#333;">
-        This dashboard is created independently to raise awareness among citizens about fund utilization in Gangudupalli Panchayat. The details shown are for informational purposes only and may differ from official records.<br>
-        <span style="color:#d32f2f;font-weight:600;">For authentic and up-to-date information, please contact the respective government department.</span>
-      </div>
-      <div style="font-size:0.97em;color:#555;margin-top:0.7em;">
-        The creators do not guarantee the accuracy, completeness, or timeliness of the data. This is not an official government publication. No legal liability is accepted for any errors or omissions. If you require official data for legal or administrative purposes, always verify with the Panchayat office or relevant authorities.
-      </div>
-    </div>
+    <!-- Disclaimer moved to bottom -->
 
     <div id="popupModal" class="modal">
       <div class="modal-content">
@@ -402,6 +390,20 @@
     </script>
 
     <div style="text-align:right; margin: 1em 2em 0 0;">
+    <!-- Disclaimer moved to bottom -->
+    <div class="disclaimer" style="margin:2em auto 1em auto;max-width:700px;text-align:left;color:#d32f2f;font-weight:500;background:rgba(255,255,255,0.22);padding:1.2em 2em 1em 2em;border-radius:14px;box-shadow:0 4px 16px rgba(31,38,135,0.10);">
+      <div style="display:flex;align-items:center;gap:0.7em;margin-bottom:0.5em;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="12" fill="#d32f2f" opacity="0.12"/><path d="M12 8v4m0 4h.01" stroke="#d32f2f" stroke-width="2" stroke-linecap="round"/></svg>
+        <span style="font-size:1.15em;font-weight:600;">Disclaimer</span>
+      </div>
+      <div style="font-size:1em;line-height:1.7;color:#333;">
+        This dashboard is created independently to raise awareness among citizens about fund utilization in Gangudupalli Panchayat. The details shown are for informational purposes only and may differ from official records.<br>
+        <span style="color:#d32f2f;font-weight:600;">For authentic and up-to-date information, please contact the respective government department.</span>
+      </div>
+      <div style="font-size:0.97em;color:#555;margin-top:0.7em;">
+        The creators do not guarantee the accuracy, completeness, or timeliness of the data. This is not an official government publication. No legal liability is accepted for any errors or omissions. If you require official data for legal or administrative purposes, always verify with the Panchayat office or relevant authorities.
+      </div>
+    </div>
       <button id="clearCacheBtn" style="background:#ff9800;color:#fff;border:none;padding:0.7em 1.5em;border-radius:7px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.08);font-weight:bold;">Clear Cache</button>
     </div>
     <div class="container">
@@ -419,6 +421,54 @@
       </div>
 
       <style>
+      /* Responsive Navbar Flex Improvements */
+      .navbar {
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 0.5em;
+      }
+      @media (max-width: 900px) {
+        .navbar {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.2em;
+        }
+        .navbar a, .glass-btn {
+          width: 100%;
+          margin: 0.2em 0;
+          text-align: left;
+        }
+      }
+      @media (max-width: 600px) {
+        .navbar {
+          padding: 0.5em 0.5em;
+        }
+        .navbar a, .glass-btn {
+          font-size: 1em;
+          padding: 0.7em 0.8em;
+        }
+      }
+      /* Card Layout Improvements */
+      .card-content-flex {
+        display: flex;
+        align-items: center;
+        gap: 1.2em;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+      }
+      .card-content-flex > div {
+        margin: 0;
+        padding: 0;
+      }
+      @media (max-width: 600px) {
+        .card-content-flex {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.7em;
+        }
+      }
         /* Under Progress Spinner Icon */
         .progress-icon {
           display: inline-block;
@@ -561,11 +611,146 @@
             return;
           }
           let total = data.reduce((sum, v) => sum + parseFloat(v.amount), 0);
-          el.innerHTML = `<div style='font-size:2em;font-weight:bold;color:#007bff;'>₹${total.toLocaleString(
-            "en-IN",
-            { minimumFractionDigits: 2 }
-          )}</div>
-          <div style='margin-top:0.5em;color:#555;'>Total Amount Spent (FY ${year})</div>`;
+          // Pie chart data: group by vendor
+          const personMap = {};
+          data.forEach(v => {
+            const name = v.vendor || 'Unknown';
+            personMap[name] = (personMap[name] || 0) + parseFloat(v.amount);
+          });
+          const personNames = Object.keys(personMap);
+          const personAmounts = personNames.map(n => personMap[n]);
+          // Pie chart colors
+          const pieColors = [
+            '#007bff','#00bcd4','#ff9800','#4caf50','#e91e63','#9c27b0','#ffc107','#8bc34a','#f44336','#3f51b5','#009688','#cddc39','#ff5722','#795548','#607d8b'
+          ];
+          // Card layout: flex for total and pie, add label above chart
+          el.innerHTML = `
+            <div class="card-content-flex">
+              <div style="min-width:140px;">
+                <div style='font-size:2em;font-weight:bold;color:#007bff;'>₹${total.toLocaleString("en-IN",{ minimumFractionDigits: 2 })}</div>
+                <div style='margin-top:0.3em;color:#555;font-size:1em;'>Total Amount Spent (FY ${year})</div>
+              </div>
+              <div style="flex:1;min-width:120px;max-width:160px;display:flex;flex-direction:column;align-items:center;">
+                <div id="piechart-label-${year}" style="display:none;position:fixed;z-index:99999;pointer-events:none;"></div>
+                <div style="position:relative;width:120px;height:120px;">
+                  <canvas id="piechart-${year}" width="120" height="120" style="background:rgba(255,255,255,0.12);border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.07);"></canvas>
+                </div>
+              </div>
+            </div>
+          `;
+          // Add details popup for pie chart click
+          if (!document.getElementById('piePersonModal')) {
+            const modal = document.createElement('div');
+            modal.id = 'piePersonModal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+              <div class="modal-content" id="piePersonModalContent" style="max-width:350px;position:relative;">
+                <button id="piePersonModalClose" style="position:absolute;top:10px;right:18px;font-size:2em;color:#007bff;background:none;border:none;cursor:pointer;z-index:100;transition:color 0.2s;">&times;</button>
+                <div id="piePersonModalBody"></div>
+              </div>
+            `;
+            document.body.appendChild(modal);
+            document.getElementById('piePersonModalClose').onclick = function() {
+              modal.style.display = 'none';
+            };
+            window.addEventListener('click', function(event) {
+              if (event.target === modal) modal.style.display = 'none';
+            });
+          }
+          // Draw pie chart after DOM update
+          setTimeout(() => {
+            const ctx = document.getElementById(`piechart-${year}`);
+            const labelDiv = document.getElementById(`piechart-label-${year}`);
+            let chart;
+            if (ctx) {
+              chart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                  labels: personNames,
+                  datasets: [{
+                    data: personAmounts,
+                    backgroundColor: pieColors,
+                    borderWidth: 1,
+                  }]
+                },
+                options: {
+                  plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false },
+                  },
+                  responsive: false,
+                  maintainAspectRatio: false,
+                  animation: false
+                },
+              });
+              // Mousemove label follow
+              ctx.addEventListener('mousemove', function(e) {
+                const rect = ctx.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+                if (points.length > 0) {
+                  const idx = points[0].index;
+                  const label = personNames[idx];
+                  const value = personAmounts[idx];
+                  labelDiv.style.display = 'block';
+                  labelDiv.innerHTML = `<div style="background:rgba(255,255,255,0.97);color:#222;padding:7px 14px 7px 14px;border-radius:10px;box-shadow:0 2px 8px #bbb;font-weight:600;font-size:1.05em;white-space:nowrap;">${label}: ₹${value.toLocaleString('en-IN',{minimumFractionDigits:2})}</div>`;
+                  // Position label near cursor, but keep inside viewport
+                  let pageX = e.clientX;
+                  let pageY = e.clientY;
+                  const labelRect = labelDiv.firstChild.getBoundingClientRect();
+                  let left = pageX + 16;
+                  let top = pageY - labelRect.height/2;
+                  if (left + labelRect.width > window.innerWidth) left = window.innerWidth - labelRect.width - 8;
+                  if (top < 0) top = 4;
+                  if (top + labelRect.height > window.innerHeight) top = window.innerHeight - labelRect.height - 4;
+                  labelDiv.style.left = left + 'px';
+                  labelDiv.style.top = top + 'px';
+                } else {
+                  labelDiv.style.display = 'none';
+                }
+              });
+              ctx.addEventListener('mouseleave', function() {
+                labelDiv.style.display = 'none';
+              });
+              // Show popup with details on click (unchanged)
+              ctx.addEventListener('click', function(e) {
+                const points = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+                if (points.length > 0) {
+                  const idx = points[0].index;
+                  const name = personNames[idx];
+                  const value = personAmounts[idx];
+                  // Show popup with breakdown table for this person
+                  const modal = document.getElementById('piePersonModal');
+                  const body = document.getElementById('piePersonModalBody');
+                  // Find all vouchers for this person
+                  const vouchers = (voucherCache[year] || []).filter(v => (v.vendor || 'Unknown') === name);
+                  let table = '';
+                  if (vouchers.length > 0) {
+                    let rows = vouchers.map((v, i) =>
+                      `<tr${i%2===0?" class='voucher-row-even'":" class='voucher-row-odd'"}><td>${v.voucherno||''}</td><td>${v.voucherdate||''}</td><td>₹${parseFloat(v.amount||0).toLocaleString('en-IN',{minimumFractionDigits:2})}</td><td>${v.status||''}</td></tr>`
+                    ).join('');
+                    table = `<div style='max-height:260px;overflow-y:auto;margin-top:0.5em;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);'>
+                      <table class='voucher-table pie-breakdown-table' style='margin:0;'>
+                        <thead><tr><th>Voucher No</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+                        <tbody>${rows}</tbody>
+                        <tfoot><tr class='total-row'><td colspan='2'>Total</td><td colspan='2'>₹${value.toLocaleString('en-IN',{minimumFractionDigits:2})}</td></tr></tfoot>
+                      </table>
+                    </div>`;
+                  } else {
+                    table = `<div style='color:orange;margin:1em 0;'>No vouchers found for this person.</div>`;
+                  }
+                  body.innerHTML = `
+                    <div style='font-size:1.15em;font-weight:600;color:#007bff;margin-bottom:0.5em;word-break:break-word;'>${name}</div>
+                    <div style='font-size:1.05em;color:#333;margin-bottom:0.7em;'>Amount Received: <span style='color:#388e3c;font-weight:600;'>₹${value.toLocaleString("en-IN",{minimumFractionDigits:2})}</span></div>
+                    ${table}
+                    <div style='font-size:0.97em;color:#d32f2f;background:rgba(255,255,255,0.13);padding:0.7em 1em 0.2em 1em;border-radius:8px;margin-top:1em;'>Note: This is for awareness only. For official info, contact Panchayat office.</div>
+                  `;
+                  modal.style.display = 'flex';
+                }
+              });
+            }
+          }, 0);
         }
 
         // Display voucher table and total in popup
